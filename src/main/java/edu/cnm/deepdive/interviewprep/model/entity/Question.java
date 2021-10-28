@@ -26,6 +26,9 @@ public class Question {
   @Column(name = "question_id", updatable = false, columnDefinition = "UUID")
   private UUID id;
 
+  @Column(nullable = false, updatable = false, columnDefinition = "UUID", unique = true)
+  private UUID externalKey = UUID.randomUUID();
+
   @CreationTimestamp
   @Temporal(value = TemporalType.TIMESTAMP)
   @Column(nullable = false, updatable = false)
@@ -40,4 +43,39 @@ public class Question {
   @Column(nullable = true, updatable = false, length = 100)
   private String source;
 
+  public UUID getId() {
+    return id;
+  }
+
+  public UUID getExternalKey() {
+    return externalKey;
+  }
+
+  public Date getCreated() {
+    return created;
+  }
+
+  public String getQuestion() {
+    return question;
+  }
+
+  public void setQuestion(String question) {
+    this.question = question;
+  }
+
+  public String getAnswer() {
+    return answer;
+  }
+
+  public void setAnswer(String answer) {
+    this.answer = answer;
+  }
+
+  public String getSource() {
+    return source;
+  }
+
+  public void setSource(String source) {
+    this.source = source;
+  }
 }

@@ -1,12 +1,18 @@
 package edu.cnm.deepdive.interviewprep.model.entity;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,7 +40,7 @@ public class Question {
   @Column(nullable = false, updatable = false)
   private Date created;
 
-  @Column(nullable = false, updatable = false, unique = true, length = 300)
+  @Column(nullable = false, updatable = false, unique = true, length = 2000)
   private String question;
 
   @Column(nullable = true, updatable = false, length = 2000)
@@ -42,6 +48,11 @@ public class Question {
 
   @Column(nullable = true, updatable = false, length = 100)
   private String source;
+
+  @OneToMany(mappedBy = "question", fetch = FetchType.LAZY,
+      cascade = CascadeType.ALL, orphanRemoval = true)
+  @OrderBy("created DESC")
+  private final List<History> history = new LinkedList<>();
 
   public UUID getId() {
     return id;
@@ -78,4 +89,9 @@ public class Question {
   public void setSource(String source) {
     this.source = source;
   }
+
+  public List<History> getHistory() {
+    return history;
+  }
 }
+

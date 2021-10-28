@@ -41,6 +41,16 @@ public class History {
   @JoinColumn(name = "user_id", nullable = false, updatable = false)
   private User user;
 
+  @ManyToOne(optional = false, fetch = FetchType.LAZY)
+  @JoinColumn(name = "question_id", nullable = false, updatable = false)
+  private Question question;
+
+  @Column(nullable = true, updatable = true, length = 2000)
+  private String userQuestion;
+
+  @Column(nullable = true, updatable = true, length = 2000)
+  private String userAnswer;
+
   public UUID getId() {
     return id;
   }
@@ -59,5 +69,29 @@ public class History {
 
   public void setUser(User user) {
     this.user = user;
+  }
+
+  public Question getQuestion() {
+    return question;
+  }
+
+  public void setQuestion(Question question) {
+    this.question = question;
+  }
+
+  public String getUserAnswer() {
+    return userAnswer;
+  }
+
+  public void setUserAnswer(String answer) {
+    this.userAnswer = answer;
+  }
+
+  public String getUserQuestion() {
+    return userQuestion;
+  }
+
+  public void setUserQuestion(String userQuestion) {
+    this.userQuestion = userQuestion;
   }
 }

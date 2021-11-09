@@ -15,6 +15,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
+/**
+ * This is our History entity class table.  It is keeping track of all attributes (i.e., id, externalKey, created, userQuestion, userAnswer, and two foriegn keys: userId and questionId).
+ */
 @Entity
 @Table(
     name = "history",

@@ -12,6 +12,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
+/**
+ * This is our Category entity class table.  It is keeping track of all attributes (i.e., id, externalKey, created, and name).
+ */
 @Entity
 @Table(
     name = "category",

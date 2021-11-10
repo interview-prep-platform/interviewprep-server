@@ -73,6 +73,12 @@
       <artifactId>spring-security-test</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-rng-simple</artifactId>
+      <version>1.4</version>
+    </dependency>
   </dependencies>
 
   <build>

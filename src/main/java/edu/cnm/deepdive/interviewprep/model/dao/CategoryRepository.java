@@ -1,7 +1,9 @@
 package edu.cnm.deepdive.interviewprep.model.dao;
 
-public interface CategoryRepository {
+import edu.cnm.deepdive.interviewprep.model.entity.Category;
+import java.util.UUID;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-  // TODO Implement this.
+public interface CategoryRepository extends JpaRepository<Category, UUID> {
 
 }

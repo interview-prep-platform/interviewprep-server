@@ -4,10 +4,13 @@ import edu.cnm.deepdive.interviewprep.model.dao.UserRepository;
 import edu.cnm.deepdive.interviewprep.model.entity.User;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
+import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
@@ -43,4 +46,30 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
         });
   }
 
+  public Optional<User> get(UUID id) {
+    return repository.findById(id);
+  }
+
+  public Optional<User> getByExternalKey(UUID key) {
+    return repository.findByExternalKey(key);
+  }
+
+  public Iterable<User> getAll() {
+    return repository.getAllByOrderByDisplayNameAsc(); //return repository.findAll(Sort.by("displayName"))
+  }
+
+  public User save(User user) {
+    return repository.save(user);
+  }
+
+  public void delete(User user) {
+    repository.delete(user);
+  }
+
+  public User getCurrentUser() {
+    return (User) SecurityContextHolder
+        .getContext() //gets context of thread on
+        .getAuthentication()
+        .getPrincipal();
+  }
 }

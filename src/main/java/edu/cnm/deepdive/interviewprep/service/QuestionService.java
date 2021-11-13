@@ -23,7 +23,7 @@ public class QuestionService {
   }
 
   public Optional<Question> get(UUID key, User user) {
-    return questionRepository.findByExternalKeyAndUser(key, user);
+    return questionRepository.findByExternalKey(key);
   }
 
   public void delete(UUID id) {
@@ -32,7 +32,7 @@ public class QuestionService {
 
   public void delete(UUID key, User user) {
     questionRepository
-        .findByExternalKeyAndUser(key, user)
+        .findByExternalKey(key)
         .ifPresent(questionRepository::delete);
   }
 
@@ -46,8 +46,9 @@ public class QuestionService {
   }
 
   public Question getRandomQuestion() {
-    return getRandomQuestion(); rng.nextInt(question);
-    //TODO Ask Nick about tablesize & how to get a random question.
+    return questionRepository
+        .findRandom()
+        .orElseThrow();//throws an exception if not in the database
   }
 
 }

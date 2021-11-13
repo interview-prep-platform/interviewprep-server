@@ -35,21 +35,23 @@ public class HistoryService {
         .ifPresent(historyRepository::delete);
   }
 
-  public History saveHistory(String question, String answer) {
+  public History saveHistory(String userQuestion, String answer, User user, Question question) {
     History history = new History();
-    history.setUserQuestion(question);
+    history.setUserQuestion(userQuestion);
     history.setUserAnswer(answer);
+    history.setQuestion(question);
+    history.setUser(user);
     return historyRepository.save(history);
   }
-  public Question processHistory(UUID questionKey, Question question, User user) {
-    return QuestionRepository
-        .findByExternalKeyAndUser(questionKey, user)
-        .map((question) -> {
-          history.setQuestion(question);
-          return historyRepository.save(history);
-        })
-        .orElseThrow();
-    //TODO Can we somehow combine the history method on line 38 and proces method of line 44. & How to save the question ID.
-  }
+//  public Question processHistory(UUID questionKey, Question question, User user) {
+//    return QuestionRepository
+//        .findByExternalKeyAndUser(questionKey, user)
+//        .map((question) -> {
+//          history.setQuestion(question);
+//          return historyRepository.save(history);
+//        })
+//        .orElseThrow();
+//    //TODO Can we somehow combine the history method on line 38 and process method of line 44. & How to save the question ID.
+//  }
 
 }

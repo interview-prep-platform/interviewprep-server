@@ -45,7 +45,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     http
         .authorizeRequests((auth) -> auth.anyRequest()
-            .anonymous())
+            .authenticated())
+        //.authorizeRequests((auth) -> auth.anyRequest()
+            //.anonymous())
         .oauth2ResourceServer()
         .jwt()
         .jwtAuthenticationConverter(converter);

@@ -23,7 +23,6 @@ import org.hibernate.annotations.CreationTimestamp;
  */
 @Entity
 @Table(
-    name = "question",
     indexes = {
         @Index(columnList = "created")
     }
@@ -54,6 +53,7 @@ public class Question {
 
   @OneToMany(mappedBy = "question", fetch = FetchType.LAZY,
       cascade = CascadeType.ALL, orphanRemoval = true)
+
   @OrderBy("created DESC")
   private final List<History> history = new LinkedList<>();
 

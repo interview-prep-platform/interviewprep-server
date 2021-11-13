@@ -21,7 +21,6 @@ import org.hibernate.annotations.CreationTimestamp;
  */
 @Entity
 @Table(
-    name = "history",
     indexes = {
         @Index(columnList = "created")
     }

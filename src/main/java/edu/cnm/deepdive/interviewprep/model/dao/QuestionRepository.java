@@ -1,7 +1,6 @@
 package edu.cnm.deepdive.interviewprep.model.dao;
 
 import edu.cnm.deepdive.interviewprep.model.entity.Question;
-import edu.cnm.deepdive.interviewprep.model.entity.User;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -16,5 +15,6 @@ public interface QuestionRepository extends JpaRepository<Question, UUID> {
 
   @Query(value = "SELECT * FROM question ORDER BY RAND() limit 1", nativeQuery = true)
   Optional<Question> findRandom();
+
 
 }

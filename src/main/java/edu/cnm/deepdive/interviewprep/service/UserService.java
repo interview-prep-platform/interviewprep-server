@@ -55,7 +55,7 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
   }
 
   public Iterable<User> getAll() {
-    return repository.getAllByOrderByDisplayNameAsc(); //return repository.findAll(Sort.by("displayName"))
+    return repository.getAllByOrderByDisplayNameAsc();
   }
 
   public User save(User user) {
@@ -66,10 +66,19 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
     repository.delete(user);
   }
 
+
   public User getCurrentUser() {
     return (User) SecurityContextHolder
-        .getContext() //gets context of thread on
+        .getContext()
         .getAuthentication()
         .getPrincipal();
   }
+
+  public User update(User updateUser, User user) {
+    if (updateUser.getDisplayName() != null) {
+      user.setDisplayName(updateUser.getDisplayName());
+    }
+    return save(user);
+  }
+
 }

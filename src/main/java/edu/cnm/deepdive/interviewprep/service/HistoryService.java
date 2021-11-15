@@ -1,17 +1,18 @@
 package edu.cnm.deepdive.interviewprep.service;
 
 import edu.cnm.deepdive.interviewprep.model.dao.HistoryRepository;
-import edu.cnm.deepdive.interviewprep.model.dao.QuestionRepository;
 import edu.cnm.deepdive.interviewprep.model.entity.History;
 import edu.cnm.deepdive.interviewprep.model.entity.Question;
 import edu.cnm.deepdive.interviewprep.model.entity.User;
 import java.util.Optional;
 import java.util.UUID;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class HistoryService {
 
   private final HistoryRepository historyRepository;
 
+  @Autowired
   public HistoryService(
       HistoryRepository historyRepository) {
     this.historyRepository = historyRepository;
@@ -43,15 +44,10 @@ public class HistoryService {
     history.setUser(user);
     return historyRepository.save(history);
   }
-//  public Question processHistory(UUID questionKey, Question question, User user) {
-//    return QuestionRepository
-//        .findByExternalKeyAndUser(questionKey, user)
-//        .map((question) -> {
-//          history.setQuestion(question);
-//          return historyRepository.save(history);
-//        })
-//        .orElseThrow();
-//    //TODO Can we somehow combine the history method on line 38 and process method of line 44. & How to save the question ID.
-//  }
+
+  public History createHistory(History history, User user) {
+    history.setUser(user);
+    return historyRepository.save(history);
+  }
 
 }

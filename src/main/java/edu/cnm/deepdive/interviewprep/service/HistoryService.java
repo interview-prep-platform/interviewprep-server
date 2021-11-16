@@ -48,8 +48,13 @@ public class HistoryService {
   }
 
   public History createHistory(History history, User user) {
+    if (history != null) {
     history.setUser(user);
+    }
+    assert history != null;
     return historyRepository.save(history);
   }
+
+
 
 }

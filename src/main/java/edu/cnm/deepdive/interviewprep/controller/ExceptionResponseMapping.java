@@ -14,6 +14,9 @@ public class ExceptionResponseMapping {
   public void notFound() {
   }
 
-
+  @ExceptionHandler(IllegalArgumentException.class)
+  @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "Invalid request content")//comes back with 400
+  public void badRequest() {
+  }
 
 }

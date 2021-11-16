@@ -34,7 +34,7 @@ public class HistoryController {
   @DeleteMapping(value = "/{externalKey}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void delete(@PathVariable UUID externalKey) {
-    historyService.delete(externalKey);
+    historyService.delete(externalKey, userService.getCurrentUser());
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

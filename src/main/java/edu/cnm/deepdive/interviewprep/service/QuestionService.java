@@ -9,18 +9,20 @@ import java.util.Random;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+@Service
 public class QuestionService {
 
   private final QuestionRepository questionRepository;
-  private final Random rng;
+
 
   @Autowired
   public QuestionService(
-      QuestionRepository questionRepository, Random rng) {
+      QuestionRepository questionRepository) {
     this.questionRepository = questionRepository;
-    this.rng = rng;
+
   }
 
   public List<Question> getQuestions() {

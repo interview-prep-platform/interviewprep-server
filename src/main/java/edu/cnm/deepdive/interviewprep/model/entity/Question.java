@@ -1,5 +1,6 @@
 package edu.cnm.deepdive.interviewprep.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -53,8 +54,8 @@ public class Question {
 
   @OneToMany(mappedBy = "question", fetch = FetchType.EAGER,
       cascade = CascadeType.ALL, orphanRemoval = true)
-
   @OrderBy("created DESC")
+  @JsonIgnore
   private final List<History> history = new LinkedList<>();
 
   public UUID getId() {

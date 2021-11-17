@@ -1,5 +1,8 @@
 package edu.cnm.deepdive.interviewprep.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.Date;
 import java.util.UUID;
 import javax.persistence.Column;
@@ -26,6 +29,7 @@ import org.springframework.lang.NonNull;
         @Index(columnList = "created")
     }
 )
+@JsonInclude(Include.NON_NULL)
 public class History {
 
   @Id
@@ -43,11 +47,13 @@ public class History {
 
   @ManyToOne(optional = false, fetch = FetchType.EAGER)
   @JoinColumn(name = "user_id", nullable = false, updatable = false)
+  @JsonIgnore
   private User user;
 
   @NonNull
   @ManyToOne(optional = false, fetch = FetchType.EAGER)
   @JoinColumn(name = "question_id", nullable = false, updatable = false)
+  @JsonIgnore
   private Question question;
 
   @Column(nullable = true, updatable = true, length = 2000)

@@ -3,6 +3,7 @@ package edu.cnm.deepdive.interviewprep.controller;
 
 import edu.cnm.deepdive.interviewprep.model.entity.History;
 import edu.cnm.deepdive.interviewprep.service.HistoryService;
+import edu.cnm.deepdive.interviewprep.service.QuestionService;
 import edu.cnm.deepdive.interviewprep.service.UserService;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,15 @@ public class HistoryController {
 
   private final UserService userService;
   private final HistoryService historyService;
+  private final QuestionService questionService;
 
   @Autowired
   public HistoryController(UserService userService,
-      HistoryService historyService) {
+      HistoryService historyService,
+      QuestionService questionService) {
     this.userService = userService;
     this.historyService = historyService;
+    this.questionService = questionService;
   }
 
   @DeleteMapping(value = "/{externalKey}")

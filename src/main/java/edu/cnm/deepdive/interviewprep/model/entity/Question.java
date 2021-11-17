@@ -12,12 +12,15 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.lang.NonNull;
 
 /**
  * This is our Question entity class table.  It is keeping track of all attributes (i.e., id, externalKey, created, question, answer, source, and history).
@@ -32,7 +35,7 @@ public class Question {
 
   @Id
   @GeneratedValue
-  @Column(name = "question_id", updatable = false, columnDefinition = "UUID")
+  @Column(name = "question_id", nullable = false, updatable = false, columnDefinition = "UUID")
   private UUID id;
 
   @Column(nullable = false, updatable = false, columnDefinition = "UUID", unique = true)
@@ -43,6 +46,11 @@ public class Question {
   @Column(nullable = false, updatable = false)
   private Date created;
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id", updatable = false)
+  @JsonIgnore
+  private User user;
+
   @Column(nullable = false, updatable = false, unique = true, length = 2000)
   private String question;
 
@@ -52,11 +60,8 @@ public class Question {
   @Column(nullable = true, updatable = false, length = 100)
   private String source;
 
-  @OneToMany(mappedBy = "question", fetch = FetchType.EAGER,
-      cascade = CascadeType.ALL, orphanRemoval = true)
-  @OrderBy("created DESC")
-  @JsonIgnore
-  private final List<History> history = new LinkedList<>();
+  @Column(nullable = true, updatable = true, length = 2000)
+  private String userAnswer;
 
   public UUID getId() {
     return id;
@@ -68,6 +73,14 @@ public class Question {
 
   public Date getCreated() {
     return created;
+  }
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
   }
 
   public String getQuestion() {
@@ -94,8 +107,12 @@ public class Question {
     this.source = source;
   }
 
-  public List<History> getHistory() {
-    return history;
+  public String getUserAnswer() {
+    return userAnswer;
+  }
+
+  public void setUserAnswer(String userAnswer) {
+    this.userAnswer = userAnswer;
   }
 }
 

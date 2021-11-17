@@ -63,7 +63,7 @@ public class User {
       cascade = CascadeType.ALL, orphanRemoval = true)
   @OrderBy("created DESC")
   @JsonIgnore
-  private final List<History> history = new LinkedList<>();
+  private final List<Question> questions = new LinkedList<>();
 
   //Getters and setters
   public UUID getId() {
@@ -95,7 +95,7 @@ public class User {
   }
 
 
-  public List<History> getHistory() {
-    return history;
+  public List<Question> getQuestions() {
+    return questions;
   }
 }

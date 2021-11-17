@@ -7,7 +7,9 @@ import edu.cnm.deepdive.interviewprep.model.entity.User;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class HistoryService {
 
   private final HistoryRepository historyRepository;
@@ -46,7 +48,12 @@ public class HistoryService {
   }
 
   public History createHistory(History history, User user) {
+    Question question = new Question();
+    question.setQuestion("question");
     history.setUser(user);
+    history.setQuestion(question);
+    history.setUserQuestion(history.getUserQuestion());
+    history.setUserAnswer(history.getUserAnswer());
     return historyRepository.save(history);
   }
 

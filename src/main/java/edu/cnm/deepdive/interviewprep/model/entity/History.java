@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.lang.NonNull;
 
 /**
  * This is our History entity class table.  It is keeping track of all attributes (i.e., id,
@@ -40,11 +41,12 @@ public class History {
   @Column(nullable = false, updatable = false)
   private Date created;
 
-  @ManyToOne(optional = false, fetch = FetchType.LAZY)
+  @ManyToOne(optional = false, fetch = FetchType.EAGER)
   @JoinColumn(name = "user_id", nullable = false, updatable = false)
   private User user;
 
-  @ManyToOne(optional = false, fetch = FetchType.LAZY)
+  @NonNull
+  @ManyToOne(optional = false, fetch = FetchType.EAGER)
   @JoinColumn(name = "question_id", nullable = false, updatable = false)
   private Question question;
 

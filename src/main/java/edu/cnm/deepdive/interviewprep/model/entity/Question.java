@@ -51,7 +51,7 @@ public class Question {
   @Column(nullable = true, updatable = false, length = 100)
   private String source;
 
-  @OneToMany(mappedBy = "question", fetch = FetchType.LAZY,
+  @OneToMany(mappedBy = "question", fetch = FetchType.EAGER,
       cascade = CascadeType.ALL, orphanRemoval = true)
 
   @OrderBy("created DESC")

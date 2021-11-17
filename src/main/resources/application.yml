@@ -21,11 +21,11 @@ spring:
     hibernate:
       ddl-auto: update
 # Enable the following lines ONLY for DDL generation.
-#    properties:
-#      javax:
-#        persistence:
-#          schema-generation:
-#            create-source: metadata
-#            scripts:
-#              action: create
-#              create-target: docs/sql/ddl.sql
+    properties:
+      javax:
+        persistence:
+          schema-generation:
+            create-source: metadata
+            scripts:
+              action: create
+              create-target: docs/sql/ddl.sql

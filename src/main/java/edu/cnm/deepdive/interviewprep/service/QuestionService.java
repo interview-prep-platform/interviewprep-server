@@ -5,12 +5,9 @@ import edu.cnm.deepdive.interviewprep.model.entity.Question;
 import edu.cnm.deepdive.interviewprep.model.entity.User;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Service
 public class QuestionService {
@@ -21,6 +18,16 @@ public class QuestionService {
   public QuestionService(
       QuestionRepository questionRepository) {
     this.questionRepository = questionRepository;
+  }
+
+  public Optional<Question> get(UUID key, User user) {
+    return questionRepository.findByExternalKeyAndUser(key, user);
+  }
+
+  public void delete(UUID key, User user) {
+    questionRepository
+        .findByExternalKeyAndUser(key, user)
+        .ifPresent(questionRepository::delete);
   }
 
   public List<Question> getQuestions() {
@@ -35,16 +42,23 @@ public class QuestionService {
     return questionRepository.findByExternalKey(key);
   }
 
-  public Question createQuestion(Question question) {
+  public Question createQuestion(Question question, User user) {
     //TODO Find how to implement
+    if (user != null) {
+      question.setUser(user);
+    }
     return questionRepository.save(question);
   }
+
 
   public void delete(UUID id) {
     questionRepository.deleteById(id);
   }
 
-  public Question saveQuestion(Question question) {
+  public Question saveQuestion(Question question, User user) {
+    if (user != null) {
+    question.setUser(user);
+    }
     return questionRepository.save(question);
   }
 

@@ -22,11 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class QuestionController {
 
   private final QuestionService questionService;
+  private final UserService userService;
 
   @Autowired
   public QuestionController(UserService userService,
       QuestionService questionService) {
     this.questionService = questionService;
+    this.userService = userService;
   }
 
   @GetMapping(value = "/{externalKey}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -38,13 +40,13 @@ public class QuestionController {
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   public Question post(@RequestBody Question question) {
-    return questionService.createQuestion(question);
+    return questionService.createQuestion(question, userService.getCurrentUser());
   }
 
 
   @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   public Question put(@RequestBody Question question) {
-    return questionService.saveQuestion(question);
+    return questionService.saveQuestion(question, userService.getCurrentUser());
   }
 
   @DeleteMapping(value = "/{externalKey}")

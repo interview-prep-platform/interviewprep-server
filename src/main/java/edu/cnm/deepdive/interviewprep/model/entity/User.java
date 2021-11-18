@@ -73,8 +73,6 @@ public class User {
 
   /**
    * Returns the primary key identifier for this instance.
-   *
-   * @return
    */
   public UUID getId() {
     return id;
@@ -82,8 +80,6 @@ public class User {
 
   /**
    * Returns a unique external key identifier for this instance.
-   *
-   * @return
    */
   public UUID getExternalKey() {
     return externalKey;
@@ -91,8 +87,6 @@ public class User {
 
   /**
    * Returns an object creation Date for this instance.
-   *
-   * @return
    */
   public Date getCreated() {
     return created;
@@ -100,8 +94,6 @@ public class User {
 
   /**
    * Returns a unique OAuth key identifier for this instance.
-   *
-   * @return
    */
   public String getOauthKey() {
     return oauthKey;
@@ -109,8 +101,6 @@ public class User {
 
   /**
    * Sets the OAuth key identifier for this object.
-   *
-   * @param oauthKey
    */
   public void setOauthKey(String oauthKey) {
     this.oauthKey = oauthKey;
@@ -118,8 +108,6 @@ public class User {
 
   /**
    * Returns a display name for the User.
-   *
-   * @return
    */
   public String getDisplayName() {
     return displayName;
@@ -127,8 +115,6 @@ public class User {
 
   /**
    * Sets a display name for the User.
-   *
-   * @param displayName
    */
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
@@ -136,8 +122,6 @@ public class User {
 
   /**
    * Returns a list of questions from the database.
-   *
-   * @return
    */
   public List<Question> getQuestions() {
     return questions;

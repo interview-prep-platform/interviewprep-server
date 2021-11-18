@@ -60,8 +60,6 @@ public class Question {
 
   /**
    * Returns the primary key identifier for this instance.
-   *
-   * @return
    */
   public UUID getId() {
     return id;
@@ -69,8 +67,6 @@ public class Question {
 
   /**
    * Returns a unique external key identifier for this instance.
-   *
-   * @return
    */
   public UUID getExternalKey() {
     return externalKey;
@@ -78,8 +74,6 @@ public class Question {
 
   /**
    * Returns an object creation Date for this instance.
-   *
-   * @return
    */
   public Date getCreated() {
     return created;
@@ -87,8 +81,6 @@ public class Question {
 
   /**
    * Returns a User object for this instance.
-   *
-   * @return
    */
   public User getUser() {
     return user;
@@ -105,8 +97,6 @@ public class Question {
 
   /**
    * Returns a question in the form of a string.
-   *
-   * @return
    */
   public String getQuestion() {
     return question;
@@ -123,8 +113,6 @@ public class Question {
 
   /**
    * Returns an answer in the form of a string.
-   *
-   * @return
    */
   public String getAnswer() {
     return answer;
@@ -141,8 +129,6 @@ public class Question {
 
   /**
    * Returns a source in the form of a string.
-   *
-   * @return
    */
   public String getSource() {
     return source;
@@ -159,8 +145,6 @@ public class Question {
 
   /**
    * Returns a user answer in the form of a string.
-   *
-   * @return
    */
   public String getUserAnswer() {
     return userAnswer;

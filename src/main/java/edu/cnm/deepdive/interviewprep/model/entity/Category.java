@@ -42,8 +42,6 @@ public class Category {
 
   /**
    * Returns the primary key identifier for this instance.
-   *
-   * @return
    */
   public UUID getId() {
     return id;
@@ -51,8 +49,6 @@ public class Category {
 
   /**
    * Returns a unique external key identifier for this instance.
-   *
-   * @return
    */
   public UUID getExternalKey() {
     return externalKey;
@@ -60,8 +56,6 @@ public class Category {
 
   /**
    * Returns an object creation Date for this instance.
-   *
-   * @return
    */
   public Date getCreated() {
     return created;
@@ -69,8 +63,6 @@ public class Category {
 
   /**
    * Returns a name for the Category.
-   *
-   * @return
    */
   public String getName() {
     return name;
@@ -78,8 +70,6 @@ public class Category {
 
   /**
    * Set a name for the Category.
-   *
-   * @return
    */
   public void setName(String name) {
     this.name = name;

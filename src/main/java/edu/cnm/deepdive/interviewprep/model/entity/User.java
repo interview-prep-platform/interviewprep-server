@@ -70,35 +70,67 @@ public class User {
   private final List<Question> questions = new LinkedList<>();
 
   //Getters and setters
+
+  /**
+   * Returns the primary key identifier for this instance.
+   * @return
+   */
   public UUID getId() {
     return id;
   }
 
+  /**
+   * Returns a unique external key identifier for this instance.
+   * @return
+   */
   public UUID getExternalKey() {
     return externalKey;
   }
 
+  /**
+   * Returns an object creation Date for this instance.
+   * @return
+   */
   public Date getCreated() {
     return created;
   }
 
+  /**
+   * Returns a unique OAuth key identifier for this instance.
+   * @return
+   */
   public String getOauthKey() {
     return oauthKey;
   }
 
+  /**
+   * Sets the OAuth key identifier for this object.
+   * @param oauthKey
+   */
   public void setOauthKey(String oauthKey) {
     this.oauthKey = oauthKey;
   }
 
+  /**
+   * Returns a display name for the User.
+   * @return
+   */
   public String getDisplayName() {
     return displayName;
   }
 
+  /**
+   * Sets a display name for the User.
+   * @param displayName
+   */
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
   }
 
-
+  /**
+   * Returns a list of questions from the database.
+   * @return
+   */
   public List<Question> getQuestions() {
     return questions;
   }

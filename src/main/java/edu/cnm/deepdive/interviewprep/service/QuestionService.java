@@ -9,63 +9,103 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * This class implements the high level persistence and business logic for the Question entity.
+ */
 @Service
 public class QuestionService {
 
   private final QuestionRepository questionRepository;
 
+  /**
+   * Constructor that instantiates a new Question service object.
+   * @param questionRepository Question repository object.
+   */
   @Autowired
   public QuestionService(
       QuestionRepository questionRepository) {
     this.questionRepository = questionRepository;
   }
 
-  public Optional<Question> get(UUID key, User user) {
-    return questionRepository.findByExternalKeyAndUser(key, user);
+  /**
+   * Returns a Question object identified by the external key for the current user.
+   * @param externalKey External key in the form of a universally unique identifier.
+   * @param user A User object.
+   * @return An optional Question object.
+   */
+  public Optional<Question> get(UUID externalKey, User user) {
+    return questionRepository.findByExternalKeyAndUser(externalKey, user);
   }
 
+
+
   /**
-   * Deletes the current question records from the provided Question database.
-   * @param key
-   * @param user
+   * Deletes a Question object identified by external key for the current user.
+   * @param externalKey External key in the form of a universally unique identifier.
+   * @param user A User object.
    */
-  public void delete(UUID key, User user) {
+  public void delete(UUID externalKey, User user) {
     questionRepository
-        .findByExternalKeyAndUser(key, user)
+        .findByExternalKeyAndUser(externalKey, user)
         .ifPresent(questionRepository::delete);
   }
 
+
+
+  /**
+   * Returns a list of all Questions in the database.
+   * @return A list of all Question objects.
+   */
   public List<Question> getQuestions() {
     return questionRepository.findAll();
   }
 
-
   /**
-   * Gets the current Question records from the database.
-   * @param id
-   * @return
+   * Gets the current Question object records from the database identified by id.
+   * @param id Id in the form of a universally unique identifier.
+   * @return An optional Question object.
    */
   public Optional<Question> get(UUID id) {
     return questionRepository.findById(id);
   }
 
-  public Optional<Question> getByExternalKey(UUID key) {
-    return questionRepository.findByExternalKey(key);
+
+  /**
+   * Gets the current Question object records from the database identified by external key.
+   * @param externalKey External key in the form of a universally unique identifier.
+   * @return An optional Question object.
+   */
+  public Optional<Question> getByExternalKey(UUID externalKey) {
+    return questionRepository.findByExternalKey(externalKey);
   }
 
+  /**
+   * Creates a new Question object in the database for the current user.
+ * @param question A Question object.
+   * @param user A User object.
+   * @return A Question object.
+   */
   public Question createQuestion(Question question, User user) {
-    //TODO Find how to implement
     if (user != null) {
       question.setUser(user);
     }
     return questionRepository.save(question);
   }
 
-
+  /**
+   * Deletes a Question object identified by the id.
+   * @param id An Id in the form of a universally unique identifier.
+   */
   public void delete(UUID id) {
     questionRepository.deleteById(id);
   }
 
+  /**
+   * Saves a Question object to the database for the current user.
+   * @param question A Question object.
+   * @param user A User object.
+   * @return A Question object.
+   */
   public Question saveQuestion(Question question, User user) {
     if (user != null) {
     question.setUser(user);
@@ -73,6 +113,10 @@ public class QuestionService {
     return questionRepository.save(question);
   }
 
+  /**
+   * Returns a random Question object from the database.
+   * @return A random Question object.
+   */
   public Question getRandomQuestion() {
     return questionRepository
         .findRandom()

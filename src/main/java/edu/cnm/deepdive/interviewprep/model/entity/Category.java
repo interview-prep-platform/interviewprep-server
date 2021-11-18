@@ -39,22 +39,42 @@ public class Category {
   @Column(nullable = false, updatable = true, unique = true, length = 40)
   private String name;
 
+  /**
+   * Returns the primary key identifier for this instance.
+   * @return
+   */
   public UUID getId() {
     return id;
   }
 
+  /**
+   * Returns a unique external key identifier for this instance.
+   * @return
+   */
   public UUID getExternalKey() {
     return externalKey;
   }
 
+  /**
+   * Returns an object creation Date for this instance.
+   * @return
+   */
   public Date getCreated() {
     return created;
   }
 
+  /**
+   * Returns a name for the Category.
+   * @return
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * Set a name for the Category.
+   * @return
+   */
   public void setName(String name) {
     this.name = name;
   }

@@ -14,11 +14,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
+/**
+ * This class implements the high level persistence and business logic for the User entity.
+ */
 @Service
 public class UserService implements Converter<Jwt, UsernamePasswordAuthenticationToken> {
 
   private final UserRepository repository;
 
+  /**
+   * Constructor that instantiates a new User repository object.
+   * @param repository User repository object.
+   */
   @Autowired
   public UserService(UserRepository repository) {
     this.repository = repository;
@@ -34,7 +41,15 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
         source.getTokenValue(), grants);
   }
 
-  //Operation to look into the database and if a User doesn't exist we add it in.
+
+
+  /**
+   * Queries the database for a User object defined by Oauth key.
+   * If a User object doesn't exist it gets added to the database.
+   * @param oauthKey An OAuth key in the form of a string.
+   * @param displayName A display name in the form of a string.
+   * @return A User object.
+   */
   public User getOrCreate(String oauthKey, String displayName) {
     return repository
         .findByOauthKey(oauthKey)
@@ -46,30 +61,52 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
         });
   }
 
+  /**
+   * Returns a User object that matches the id.
+   * @param id Id in the form of a universally unique identifier.
+   * @return An optional User object.
+   */
   public Optional<User> get(UUID id) {
     return repository.findById(id);
   }
 
-  public Optional<User> getByExternalKey(UUID key) {
-    return repository.findByExternalKey(key);
+  /**
+   *  Returns a User that matches the external key.
+   * @param externalKey External key in the form of a universally unique identifier.
+   * @return An optional User object.
+   */
+  public Optional<User> getByExternalKey(UUID externalKey) {
+    return repository.findByExternalKey(externalKey);
   }
 
+  /**
+   * Returns a list of Users ordered by display name in ascending order.
+   * @return A list of User objects.
+   */
   public Iterable<User> getAll() {
     return repository.getAllByOrderByDisplayNameAsc();
   }
 
+  /**
+   * Saves a User object to the database.
+   * @param user A User object.
+   * @return A User object.
+   */
   public User save(User user) {
     return repository.save(user);
   }
 
+  /**
+   * Deletes a User object that matches the parameter user from the database.
+   * @param user A User Object.
+   */
   public void delete(User user) {
     repository.delete(user);
   }
 
   /**
-   * Gets the current user records from the database.
-   *
-   * @return
+   * Gets a current User object from the database.
+   *@return A User object.
    */
   public User getCurrentUser() {
     return (User) SecurityContextHolder
@@ -78,8 +115,8 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
         .getPrincipal();
   }
   /**
-   * Updates the current user records from the provided updated user record, and saves the result to the database.
-   *
+   * Updates the current User object records from the provided updated User record,
+   * and saves the result to the database.
    * @param updateUser User deserialized from body of request.
    * @param user Current requestor.
    * @return Updated user instance.

@@ -64,54 +64,106 @@ public class Question {
   @Column(nullable = true, updatable = true, length = 2000)
   private String userAnswer;
 
+  /**
+   * Returns the primary key identifier for this instance.
+   * @return
+   */
   public UUID getId() {
     return id;
   }
 
+  /**
+   * Returns a unique external key identifier for this instance.
+   * @return
+   */
   public UUID getExternalKey() {
     return externalKey;
   }
 
+  /**
+   * Returns an object creation Date for this instance.
+   * @return
+   */
   public Date getCreated() {
     return created;
   }
 
+  /**
+   * Returns a User object for this instance.
+   * @return
+   */
   public User getUser() {
     return user;
   }
 
+  /**
+   * Sets a User object for this instance.
+   * @param user
+   */
   public void setUser(User user) {
     this.user = user;
   }
 
+  /**
+   * Returns a question in the form of a string.
+   * @return
+   */
   public String getQuestion() {
     return question;
   }
 
+  /**
+   * Sets a question in the form of a string.
+   * @param question
+   */
   public void setQuestion(String question) {
     this.question = question;
   }
 
+  /**
+   * Returns an answer in the form of a string.
+   * @return
+   */
   public String getAnswer() {
     return answer;
   }
 
+  /**
+   * Sets an answer in the form of a string.
+   * @param answer
+   */
   public void setAnswer(String answer) {
     this.answer = answer;
   }
 
+  /**
+   *  Returns a source in the form of a string.
+   * @return
+   */
   public String getSource() {
     return source;
   }
 
+  /**
+   *  Sets a source in the form of a string.
+   * @param source
+   */
   public void setSource(String source) {
     this.source = source;
   }
 
+  /**
+   * Returns a user answer in the form of a string.
+   * @return
+   */
   public String getUserAnswer() {
     return userAnswer;
   }
 
+  /**
+   *  Sets a user answer in the form of a string.
+   * @param userAnswer
+   */
   public void setUserAnswer(String userAnswer) {
     this.userAnswer = userAnswer;
   }

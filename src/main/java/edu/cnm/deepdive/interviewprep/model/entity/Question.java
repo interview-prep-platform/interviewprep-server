@@ -23,7 +23,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.lang.NonNull;
 
 /**
- * This is our Question entity class table.  It is keeping track of all attributes (i.e., id, externalKey, created, question, answer, source, and history).
+ * This is our Question entity class table that represents Question objects in the Database.
+ * It is keeping track of all attributes (i.e., id, externalKey, created, question, answer, source).
  */
 @Entity
 @Table(

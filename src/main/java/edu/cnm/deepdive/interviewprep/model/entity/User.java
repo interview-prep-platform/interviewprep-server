@@ -24,6 +24,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
+/**
+ * This is our User entity class table that represents User objects in the database.
+ * It is keeping track of all attributes (i.e., id, externalKey, oath key, created, display name).
+ */
 @SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
 @Table(

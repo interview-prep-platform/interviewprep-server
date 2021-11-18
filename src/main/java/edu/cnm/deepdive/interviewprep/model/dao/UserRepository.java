@@ -14,6 +14,7 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 
   /**
    * Returns a User object that matches the OAuth key.
+   *
    * @param oauthKey OAuth key in the form of a string.
    * @return An optional User object.
    */
@@ -21,6 +22,7 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 
   /**
    * Returns a User object that matches the external key.
+   *
    * @param externalKey External key in the form of a universally unique identifier.
    * @return An optional User object.
    */
@@ -28,6 +30,7 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 
   /**
    * Returns a list of User objects ordered by display name in ascending order.
+   *
    * @return Returns an iterable User object.
    */
   Iterable<User> getAllByOrderByDisplayNameAsc();

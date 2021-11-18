@@ -15,6 +15,7 @@ public interface QuestionRepository extends JpaRepository<Question, UUID> {
 
   /**
    * Returns a Question object that matches the external key.
+   *
    * @param externalKey External key in the form of universally unique identifier.
    * @return An optional Question object.
    */
@@ -22,14 +23,16 @@ public interface QuestionRepository extends JpaRepository<Question, UUID> {
 
   /**
    * Returns a Question object that matches the external key and user id.
+   *
    * @param externalKey External key in the form of universally unique identifier.
-   * @param user User object
-   * @return  An optional Question object.
+   * @param user        User object
+   * @return An optional Question object.
    */
   Optional<Question> findByExternalKeyAndUser(UUID externalKey, User user);
 
   /**
    * Returns a list of Question objects identified by the source.
+   *
    * @param source A source in the form of a string.
    * @return An optional list of Question objects.
    */
@@ -37,6 +40,7 @@ public interface QuestionRepository extends JpaRepository<Question, UUID> {
 
   /**
    * Returns a random Question object from the database.
+   *
    * @return An optional Question object.
    */
   @Query(value = "SELECT * FROM question ORDER BY RAND() limit 1", nativeQuery = true)

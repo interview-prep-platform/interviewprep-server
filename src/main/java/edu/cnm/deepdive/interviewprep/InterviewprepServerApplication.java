@@ -12,6 +12,7 @@ public class InterviewprepServerApplication {
 
   /**
    * The main entry point to the server application.
+   *
    * @param args A String array of arguments.
    */
   public static void main(String[] args) {

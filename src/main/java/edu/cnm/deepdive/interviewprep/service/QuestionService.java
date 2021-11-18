@@ -19,6 +19,7 @@ public class QuestionService {
 
   /**
    * Constructor that instantiates a new Question service object.
+   *
    * @param questionRepository Question repository object.
    */
   @Autowired
@@ -29,8 +30,9 @@ public class QuestionService {
 
   /**
    * Returns a Question object identified by the external key for the current user.
+   *
    * @param externalKey External key in the form of a universally unique identifier.
-   * @param user A User object.
+   * @param user        A User object.
    * @return An optional Question object.
    */
   public Optional<Question> get(UUID externalKey, User user) {
@@ -38,11 +40,11 @@ public class QuestionService {
   }
 
 
-
   /**
    * Deletes a Question object identified by external key for the current user.
+   *
    * @param externalKey External key in the form of a universally unique identifier.
-   * @param user A User object.
+   * @param user        A User object.
    */
   public void delete(UUID externalKey, User user) {
     questionRepository
@@ -51,9 +53,9 @@ public class QuestionService {
   }
 
 
-
   /**
    * Returns a list of all Questions in the database.
+   *
    * @return A list of all Question objects.
    */
   public List<Question> getQuestions() {
@@ -62,6 +64,7 @@ public class QuestionService {
 
   /**
    * Gets the current Question object records from the database identified by id.
+   *
    * @param id Id in the form of a universally unique identifier.
    * @return An optional Question object.
    */
@@ -72,6 +75,7 @@ public class QuestionService {
 
   /**
    * Gets the current Question object records from the database identified by external key.
+   *
    * @param externalKey External key in the form of a universally unique identifier.
    * @return An optional Question object.
    */
@@ -81,8 +85,9 @@ public class QuestionService {
 
   /**
    * Creates a new Question object in the database for the current user.
- * @param question A Question object.
-   * @param user A User object.
+   *
+   * @param question A Question object.
+   * @param user     A User object.
    * @return A Question object.
    */
   public Question createQuestion(Question question, User user) {
@@ -94,6 +99,7 @@ public class QuestionService {
 
   /**
    * Deletes a Question object identified by the id.
+   *
    * @param id An Id in the form of a universally unique identifier.
    */
   public void delete(UUID id) {
@@ -102,19 +108,21 @@ public class QuestionService {
 
   /**
    * Saves a Question object to the database for the current user.
+   *
    * @param question A Question object.
-   * @param user A User object.
+   * @param user     A User object.
    * @return A Question object.
    */
   public Question saveQuestion(Question question, User user) {
     if (user != null) {
-    question.setUser(user);
+      question.setUser(user);
     }
     return questionRepository.save(question);
   }
 
   /**
    * Returns a random Question object from the database.
+   *
    * @return A random Question object.
    */
   public Question getRandomQuestion() {

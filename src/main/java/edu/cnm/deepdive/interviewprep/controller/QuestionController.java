@@ -29,7 +29,7 @@ public class QuestionController {
   private final UserService userService;
 
   /**
-   * Constructor that instantiates a new User repository object.
+   * Constructor that instantiates a new User service object.
    *
    * @param userService     User service object.
    * @param questionService Question service object.

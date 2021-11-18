@@ -25,8 +25,8 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 /**
- * This is our User entity class that represents User objects in the database.
- * It is keeping track of all attributes (i.e., id, externalKey, oath key, created, display name).
+ * This is our User entity class that represents User objects in the database. It is keeping track
+ * of all attributes (i.e., id, externalKey, oath key, created, display name).
  */
 @SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
@@ -73,6 +73,7 @@ public class User {
 
   /**
    * Returns the primary key identifier for this instance.
+   *
    * @return
    */
   public UUID getId() {
@@ -81,6 +82,7 @@ public class User {
 
   /**
    * Returns a unique external key identifier for this instance.
+   *
    * @return
    */
   public UUID getExternalKey() {
@@ -89,6 +91,7 @@ public class User {
 
   /**
    * Returns an object creation Date for this instance.
+   *
    * @return
    */
   public Date getCreated() {
@@ -97,6 +100,7 @@ public class User {
 
   /**
    * Returns a unique OAuth key identifier for this instance.
+   *
    * @return
    */
   public String getOauthKey() {
@@ -105,6 +109,7 @@ public class User {
 
   /**
    * Sets the OAuth key identifier for this object.
+   *
    * @param oauthKey
    */
   public void setOauthKey(String oauthKey) {
@@ -113,6 +118,7 @@ public class User {
 
   /**
    * Returns a display name for the User.
+   *
    * @return
    */
   public String getDisplayName() {
@@ -121,6 +127,7 @@ public class User {
 
   /**
    * Sets a display name for the User.
+   *
    * @param displayName
    */
   public void setDisplayName(String displayName) {
@@ -129,6 +136,7 @@ public class User {
 
   /**
    * Returns a list of questions from the database.
+   *
    * @return
    */
   public List<Question> getQuestions() {

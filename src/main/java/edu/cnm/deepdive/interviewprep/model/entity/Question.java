@@ -2,10 +2,7 @@ package edu.cnm.deepdive.interviewprep.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.UUID;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,17 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.lang.NonNull;
 
 /**
- * This is our Question entity class that represents Question objects in the Database.
- * It is keeping track of all attributes (i.e., id, externalKey, created, question, answer, source).
+ * This is our Question entity class that represents Question objects in the Database. It is keeping
+ * track of all attributes (i.e., id, externalKey, created, question, answer, source).
  */
 @Entity
 @Table(
@@ -66,6 +60,7 @@ public class Question {
 
   /**
    * Returns the primary key identifier for this instance.
+   *
    * @return
    */
   public UUID getId() {
@@ -74,6 +69,7 @@ public class Question {
 
   /**
    * Returns a unique external key identifier for this instance.
+   *
    * @return
    */
   public UUID getExternalKey() {
@@ -82,6 +78,7 @@ public class Question {
 
   /**
    * Returns an object creation Date for this instance.
+   *
    * @return
    */
   public Date getCreated() {
@@ -90,6 +87,7 @@ public class Question {
 
   /**
    * Returns a User object for this instance.
+   *
    * @return
    */
   public User getUser() {
@@ -98,6 +96,7 @@ public class Question {
 
   /**
    * Sets a User object for this instance.
+   *
    * @param user
    */
   public void setUser(User user) {
@@ -106,6 +105,7 @@ public class Question {
 
   /**
    * Returns a question in the form of a string.
+   *
    * @return
    */
   public String getQuestion() {
@@ -114,6 +114,7 @@ public class Question {
 
   /**
    * Sets a question in the form of a string.
+   *
    * @param question
    */
   public void setQuestion(String question) {
@@ -122,6 +123,7 @@ public class Question {
 
   /**
    * Returns an answer in the form of a string.
+   *
    * @return
    */
   public String getAnswer() {
@@ -130,6 +132,7 @@ public class Question {
 
   /**
    * Sets an answer in the form of a string.
+   *
    * @param answer
    */
   public void setAnswer(String answer) {
@@ -137,7 +140,8 @@ public class Question {
   }
 
   /**
-   *  Returns a source in the form of a string.
+   * Returns a source in the form of a string.
+   *
    * @return
    */
   public String getSource() {
@@ -145,7 +149,8 @@ public class Question {
   }
 
   /**
-   *  Sets a source in the form of a string.
+   * Sets a source in the form of a string.
+   *
    * @param source
    */
   public void setSource(String source) {
@@ -154,6 +159,7 @@ public class Question {
 
   /**
    * Returns a user answer in the form of a string.
+   *
    * @return
    */
   public String getUserAnswer() {
@@ -161,7 +167,8 @@ public class Question {
   }
 
   /**
-   *  Sets a user answer in the form of a string.
+   * Sets a user answer in the form of a string.
+   *
    * @param userAnswer
    */
   public void setUserAnswer(String userAnswer) {

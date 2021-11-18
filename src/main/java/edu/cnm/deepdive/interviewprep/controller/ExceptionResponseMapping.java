@@ -15,7 +15,7 @@ public class ExceptionResponseMapping {
 
   /**
    * This method handles a no such element exception from the REST endpoint, and returns a
-   * user-friendly status code in the header response (404).
+   * user-friendly status code in the header response.
    */
   @ExceptionHandler(NoSuchElementException.class)
   //Nosuch element exception with associated with this status

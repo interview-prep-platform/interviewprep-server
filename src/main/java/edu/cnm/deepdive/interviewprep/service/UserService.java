@@ -24,6 +24,7 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
 
   /**
    * Constructor that instantiates a new User repository object.
+   *
    * @param repository User repository object.
    */
   @Autowired
@@ -42,11 +43,11 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
   }
 
 
-
   /**
-   * Queries the database for a User object defined by Oauth key.
-   * If a User object doesn't exist it gets added to the database.
-   * @param oauthKey An OAuth key in the form of a string.
+   * Queries the database for a User object defined by Oauth key. If a User object doesn't exist it
+   * gets added to the database.
+   *
+   * @param oauthKey    An OAuth key in the form of a string.
    * @param displayName A display name in the form of a string.
    * @return A User object.
    */
@@ -63,6 +64,7 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
 
   /**
    * Returns a User object that matches the id.
+   *
    * @param id Id in the form of a universally unique identifier.
    * @return An optional User object.
    */
@@ -71,7 +73,8 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
   }
 
   /**
-   *  Returns a User that matches the external key.
+   * Returns a User that matches the external key.
+   *
    * @param externalKey External key in the form of a universally unique identifier.
    * @return An optional User object.
    */
@@ -81,6 +84,7 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
 
   /**
    * Returns a list of Users ordered by display name in ascending order.
+   *
    * @return A list of User objects.
    */
   public Iterable<User> getAll() {
@@ -89,6 +93,7 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
 
   /**
    * Saves a User object to the database.
+   *
    * @param user A User object.
    * @return A User object.
    */
@@ -98,6 +103,7 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
 
   /**
    * Deletes a User object that matches the parameter user from the database.
+   *
    * @param user A User Object.
    */
   public void delete(User user) {
@@ -106,7 +112,8 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
 
   /**
    * Gets a current User object from the database.
-   *@return A User object.
+   *
+   * @return A User object.
    */
   public User getCurrentUser() {
     return (User) SecurityContextHolder
@@ -114,11 +121,13 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
         .getAuthentication()
         .getPrincipal();
   }
+
   /**
-   * Updates the current User object records from the provided updated User record,
-   * and saves the result to the database.
+   * Updates the current User object records from the provided updated User record, and saves the
+   * result to the database.
+   *
    * @param updateUser User deserialized from body of request.
-   * @param user Current requestor.
+   * @param user       Current requestor.
    * @return Updated user instance.
    */
   public User update(User updateUser, User user) {

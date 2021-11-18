@@ -15,6 +15,7 @@ public class CategoryService {
 
   /**
    * Constructor that instantiates a new Category service object.
+   *
    * @param categoryRepository Category repository object.
    */
   public CategoryService(
@@ -24,6 +25,7 @@ public class CategoryService {
 
   /**
    * Gets the current Category object records from the database identified by id.
+   *
    * @param id Id in the form of a universally unique identifier.
    * @return An optional Category object.
    */
@@ -32,9 +34,9 @@ public class CategoryService {
   }
 
 
-
   /**
    * Deletes a Category object identified by the id.
+   *
    * @param id An Id in the form of a universally unique identifier.
    */
   public void delete(UUID id) {
@@ -42,9 +44,9 @@ public class CategoryService {
   }
 
 
-
   /**
    * Saves a Category object to the database identified by name.
+   *
    * @param name A category name in the form of a string.
    * @return A Category object.
    */

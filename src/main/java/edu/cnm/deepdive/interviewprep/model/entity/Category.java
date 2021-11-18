@@ -13,7 +13,8 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 /**
- * This is our Category entity class table.  It is keeping track of all attributes (i.e., id, externalKey, created, and name).
+ * This is our Category entity class table.  It is keeping track of all attributes (i.e., id,
+ * externalKey, created, and name).
  */
 @Entity
 @Table(
@@ -41,6 +42,7 @@ public class Category {
 
   /**
    * Returns the primary key identifier for this instance.
+   *
    * @return
    */
   public UUID getId() {
@@ -49,6 +51,7 @@ public class Category {
 
   /**
    * Returns a unique external key identifier for this instance.
+   *
    * @return
    */
   public UUID getExternalKey() {
@@ -57,6 +60,7 @@ public class Category {
 
   /**
    * Returns an object creation Date for this instance.
+   *
    * @return
    */
   public Date getCreated() {
@@ -65,6 +69,7 @@ public class Category {
 
   /**
    * Returns a name for the Category.
+   *
    * @return
    */
   public String getName() {
@@ -73,6 +78,7 @@ public class Category {
 
   /**
    * Set a name for the Category.
+   *
    * @return
    */
   public void setName(String name) {

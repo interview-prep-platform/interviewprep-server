@@ -12,6 +12,7 @@ public interface CategoryRepository extends JpaRepository<Category, UUID> {
 
   /**
    * Returns a Category object that matches the external key.
+   *
    * @param externalKey External key in the form of a universally unique identifier.
    * @return An optional Category object.
    */

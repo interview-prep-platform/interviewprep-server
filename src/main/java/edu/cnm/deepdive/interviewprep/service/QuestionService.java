@@ -24,6 +24,11 @@ public class QuestionService {
     return questionRepository.findByExternalKeyAndUser(key, user);
   }
 
+  /**
+   * Deletes the current question records from the provided Question database.
+   * @param key
+   * @param user
+   */
   public void delete(UUID key, User user) {
     questionRepository
         .findByExternalKeyAndUser(key, user)
@@ -34,6 +39,12 @@ public class QuestionService {
     return questionRepository.findAll();
   }
 
+
+  /**
+   * Gets the current Question records from the database.
+   * @param id
+   * @return
+   */
   public Optional<Question> get(UUID id) {
     return questionRepository.findById(id);
   }

@@ -66,14 +66,24 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
     repository.delete(user);
   }
 
-
+  /**
+   * Gets the current user records from the database.
+   *
+   * @return
+   */
   public User getCurrentUser() {
     return (User) SecurityContextHolder
         .getContext()
         .getAuthentication()
         .getPrincipal();
   }
-
+  /**
+   * Updates the current user records from the provided updated user record, and saves the result to the database.
+   *
+   * @param updateUser User deserialized from body of request.
+   * @param user Current requestor.
+   * @return Updated user instance.
+   */
   public User update(User updateUser, User user) {
     if (updateUser.getDisplayName() != null) {
       user.setDisplayName(updateUser.getDisplayName());

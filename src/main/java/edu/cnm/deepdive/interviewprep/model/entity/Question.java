@@ -89,7 +89,7 @@ public class Question {
   /**
    * Sets a User object for this instance.
    *
-   * @param user
+   *
    */
   public void setUser(User user) {
     this.user = user;
@@ -105,7 +105,7 @@ public class Question {
   /**
    * Sets a question in the form of a string.
    *
-   * @param question
+   *
    */
   public void setQuestion(String question) {
     this.question = question;
@@ -121,7 +121,7 @@ public class Question {
   /**
    * Sets an answer in the form of a string.
    *
-   * @param answer
+   *
    */
   public void setAnswer(String answer) {
     this.answer = answer;
@@ -137,7 +137,7 @@ public class Question {
   /**
    * Sets a source in the form of a string.
    *
-   * @param source
+   *  source
    */
   public void setSource(String source) {
     this.source = source;
@@ -153,7 +153,7 @@ public class Question {
   /**
    * Sets a user answer in the form of a string.
    *
-   * @param userAnswer
+   *
    */
   public void setUserAnswer(String userAnswer) {
     this.userAnswer = userAnswer;

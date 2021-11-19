@@ -21,28 +21,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * This class creates REST endpoints that has access to the Question entity in the database through
- * the Question and User and Category services. Identified by the URL /interviewprep/categories.
+ * the Category services. Identified by the URL /interviewprep/categories.
  */
 @RestController
 @RequestMapping("/categories")
 public class CategoryController {
 
-  private final QuestionService questionService;
-  private final UserService userService;
   private final CategoryService categoryService;
 
   /**
    * Constructor that instantiates a new User service object.
-   * @param userService     User service object.
-   * @param questionService Question service object.
+   *
    * @param categoryService Category service object.
    */
   @Autowired
-  public CategoryController(UserService userService,
-      QuestionService questionService,
-      CategoryService categoryService) {
-    this.questionService = questionService;
-    this.userService = userService;
+  public CategoryController(CategoryService categoryService) {
     this.categoryService = categoryService;
   }
 
@@ -78,9 +71,9 @@ public class CategoryController {
    * This method defines the behavior of a PUT request to the URL /interviewprep/categorie/categoryId.
    * It updates a category through the Category service.
    *
-   * @param categoryId An id in the form of a universally unique identifier as identified by
-   *    *    *                    the path variable categoryId.
-   * @param category A Category Object in the form of request body.
+   * @param categoryId An id in the form of a universally unique identifier as identified by *    *
+   *                   the path variable categoryId.
+   * @param category   A Category Object in the form of request body.
    * @return A Category object in the form of JSON.
    */
   @PutMapping(value = "/{categoryId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

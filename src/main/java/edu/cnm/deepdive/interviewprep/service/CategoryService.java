@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 
 /**
- * This class implements the high level persistence and business logic for the Category entity.
+ * This class implements the high level persistence and business logic for the {@link Category} entity.
  */
 @Service
 public class CategoryService {
@@ -19,7 +19,7 @@ public class CategoryService {
   private final CategoryRepository categoryRepository;
 
   /**
-   * Constructor that instantiates a new Category service object.
+   * Constructor that instantiates a new {@link Category} service object.
    *
    * @param categoryRepository Category repository object.
    */
@@ -29,7 +29,7 @@ public class CategoryService {
   }
 
   /**
-   * Gets the current Category object records from the database identified by id.
+   * Gets the current {@link Category} object records from the database identified by id.
    *
    * @param externalKey Id in the form of a universally unique identifier.
    * @return An optional Category object.
@@ -39,7 +39,7 @@ public class CategoryService {
   }
 
   /**
-   * Returns a list of all Categories in the database.
+   * Returns a list of all {@link Category} in the database.
    *
    * @return A list of all Category objects.
    */
@@ -48,7 +48,7 @@ public class CategoryService {
   }
 
   /**
-   * Deletes a Category object identified by external key.
+   * Deletes a {@link Category} object identified by external key.
    *
    * @param externalKey External key in the form of a universally unique identifier.
    */
@@ -59,7 +59,7 @@ public class CategoryService {
   }
 
   /**
-   * Saves a Category object to the database identified by name.
+   * Saves a {@link Category} object to the database identified by name.
    *
    * @param name A category name in the form of a string.
    * @return A Category object.
@@ -71,7 +71,7 @@ public class CategoryService {
   }
 
   /**
-   * Creates a new Category object in the database.
+   * Creates a new {@link Category} object in the database.
    *
    * @param category A Category object.
    * @return A Category object.
@@ -81,7 +81,7 @@ public class CategoryService {
   }
 
   /**
-   * Updates a Category object to the database for the current user.
+   * Updates a {@link Category} object to the database for the current user.
    *
    * @param externalKey External key in the form of a universally unique identifier.
    * @param category A Category object.

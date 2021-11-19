@@ -63,23 +63,12 @@ public class QuestionService {
   }
 
   /**
-   * Gets the current Question object records from the database identified by id.
-   *
-   * @param id Id in the form of a universally unique identifier.
-   * @return An optional Question object.
-   */
-  public Optional<Question> get(UUID id) {
-    return questionRepository.findById(id);
-  }
-
-
-  /**
    * Gets the current Question object records from the database identified by external key.
    *
-   * @param externalKey External key in the form of a universally unique identifier.
+   * @param externalKey Id in the form of a universally unique identifier.
    * @return An optional Question object.
    */
-  public Optional<Question> getByExternalKey(UUID externalKey) {
+  public Optional<Question> get(UUID externalKey) {
     return questionRepository.findByExternalKey(externalKey);
   }
 
@@ -95,15 +84,6 @@ public class QuestionService {
       question.setUser(user);
     }
     return questionRepository.save(question);
-  }
-
-  /**
-   * Deletes a Question object identified by the id.
-   *
-   * @param id An Id in the form of a universally unique identifier.
-   */
-  public void delete(UUID id) {
-    questionRepository.deleteById(id);
   }
 
   /**
@@ -131,5 +111,25 @@ public class QuestionService {
         .orElseThrow();//throws an exception if not in the database
   }
 
+  /**
+   * Updates a Question object to the database for the current user.
+   *
+   * @param externalKey External key in the form of a universally unique identifier.
+   * @param question A Question object.
+   * @param user     A User object.
+   * @return A Question object.
+   */
+  public Optional<Question> updateQuestion(UUID externalKey, Question question, User user) {
+    return questionRepository
+        .findByExternalKey(externalKey)
+        .map((q) -> { //if we don't have anthing returned from the optional, then the map won't execute
+          q.setQuestion(question.getQuestion());
+          q.setAnswer(question.getAnswer());
+          q.setSource(question.getSource());
+          return questionRepository.save(q);
+        });
+    //updatedQuestion.setUserAnswer(question.getUserAnswer());
+    // TODO
+  }
 
 }

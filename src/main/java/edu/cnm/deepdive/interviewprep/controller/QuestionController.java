@@ -47,7 +47,7 @@ public class QuestionController {
    *
    * @param externalKey External key in the form of a universally unique identifier as identified by
    *                    the path variable external key.
-   * @return A Question service object in the form of JSON.
+   * @return A Question object in the form of JSON.
    */
   @GetMapping(value = "/{externalKey}", produces = MediaType.APPLICATION_JSON_VALUE)
   public Question get(@PathVariable UUID externalKey) {
@@ -61,7 +61,7 @@ public class QuestionController {
    * creates a new question through the Question service for the current user.
    *
    * @param question A Question Object in the form of request body.
-   * @return A Question service object in the form of JSON.
+   * @return A Question object in the form of JSON.
    */
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   public Question post(@RequestBody Question question) {
@@ -73,12 +73,16 @@ public class QuestionController {
    * This method defines the behavior of a PUT request to the URL /interviewprep/questions/questionid.
    * It updates a question through the Question service for the current user.
    *
+   * @param questionId An id in the form of a universally unique identifier as identified by
+   *    *                    the path variable questionId.
    * @param question A Question Object in the form of request body.
-   * @return A Question service object in the form of JSON.
+   * @return A Question object in the form of JSON.
    */
   @PutMapping(value = "/{questionId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  public Question put(@PathVariable String questionId, @RequestBody Question question) {
-    return questionService.saveQuestion(question, userService.getCurrentUser());
+  public Question put(@PathVariable UUID questionId, @RequestBody Question question) {
+    return questionService
+        .updateQuestion(questionId, question, userService.getCurrentUser())
+        .orElseThrow();
   }
 
   /**
@@ -91,7 +95,7 @@ public class QuestionController {
   @DeleteMapping(value = "/{externalKey}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void delete(@PathVariable UUID externalKey) {
-    questionService.delete(externalKey);
+    questionService.delete(externalKey, userService.getCurrentUser());
   }
 
   /**
@@ -114,6 +118,4 @@ public class QuestionController {
     return questionService
         .getQuestions();
   }
-
-
 }

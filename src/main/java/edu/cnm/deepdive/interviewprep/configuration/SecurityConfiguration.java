@@ -20,6 +20,10 @@ import org.springframework.security.oauth2.jwt.JwtDecoders;
 import org.springframework.security.oauth2.jwt.JwtValidators;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 
+/**
+ * This class handles the security configuration of our Server Application. This class gets and
+ * validates a user token from Google-Sign-in.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -32,6 +36,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Value("${spring.security.oauth2.resourceserver.jwt.client-id}")
   private String clientId;
 
+  /**
+   * This Constructor instantiates a new security configuration object.
+   *
+   * @param converter A Converter object.
+   */
   @Autowired
   public SecurityConfiguration(
       Converter<Jwt, ? extends AbstractAuthenticationToken> converter) {
@@ -47,13 +56,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .authorizeRequests((auth) -> auth.anyRequest()
             .authenticated())
         //.authorizeRequests((auth) -> auth.anyRequest()
-            //.anonymous())
+        //.anonymous())
         .oauth2ResourceServer()
         .jwt()
         .jwtAuthenticationConverter(converter);
   }
 
-  //This is our decoder/ the method that will validate a token.
+  /**
+   * This method allows user to access a decoded and validated bearer token.
+   *
+   * @return JWT Decoder object
+   */
   public JwtDecoder jwtDecoder() {
     NimbusJwtDecoder decoder = JwtDecoders.fromIssuerLocation(issuerUri);
     OAuth2TokenValidator<Jwt> audienceValidator =

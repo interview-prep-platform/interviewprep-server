@@ -24,6 +24,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
+/**
+ * This is our User entity class that represents User objects in the database. It is keeping track
+ * of all attributes (i.e., id, externalKey, oath key, created, display name).
+ */
 @SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
 @Table(
@@ -33,7 +37,7 @@ import org.hibernate.annotations.CreationTimestamp;
     }
 )
 @JsonInclude(Include.NON_NULL)
-@JsonPropertyOrder({"id, created, displayName"})
+@JsonPropertyOrder({"id", "created", "displayName"})
 public class User {
 
   @Id
@@ -49,6 +53,7 @@ public class User {
   @CreationTimestamp
   @Temporal(value = TemporalType.TIMESTAMP)
   @Column(nullable = false, updatable = false)
+  @JsonProperty(access = Access.READ_ONLY)
   private Date created;
 
   @Column(nullable = false, updatable = false, unique = true, length = 30)
@@ -66,35 +71,59 @@ public class User {
   private final List<Question> questions = new LinkedList<>();
 
   //Getters and setters
+
+  /**
+   * Returns the primary key identifier for this instance.
+   */
   public UUID getId() {
     return id;
   }
 
+  /**
+   * Returns a unique external key identifier for this instance.
+   */
   public UUID getExternalKey() {
     return externalKey;
   }
 
+  /**
+   * Returns an object creation Date for this instance.
+   */
   public Date getCreated() {
     return created;
   }
 
+  /**
+   * Returns a unique OAuth key identifier for this instance.
+   */
   public String getOauthKey() {
     return oauthKey;
   }
 
+  /**
+   * Sets the OAuth key identifier for this object.
+   */
   public void setOauthKey(String oauthKey) {
     this.oauthKey = oauthKey;
   }
 
+  /**
+   * Returns a display name for the User.
+   */
   public String getDisplayName() {
     return displayName;
   }
 
+  /**
+   * Sets a display name for the User.
+   */
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
   }
 
-
+  /**
+   * Returns a list of questions from the database.
+   */
   public List<Question> getQuestions() {
     return questions;
   }

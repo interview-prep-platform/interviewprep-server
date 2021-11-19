@@ -83,9 +83,48 @@
 
   <build>
     <plugins>
+
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.3.1</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+
+        <configuration>
+          <links>
+            <link>https://docs.oracle.com/en/java/javase/11/docs/api/</link>
+            <link>https://docs.spring.io/spring-framework/docs/current/javadoc-api/</link>
+            <link>https://docs.spring.io/spring-boot/docs/current/api/</link>
+            <link>https://docs.spring.io/spring-hateoas/docs/current/api/</link>
+            <link>https://docs.spring.io/spring-data/commons/docs/current/api/</link>
+            <link>https://docs.spring.io/spring-data/data-jpa/docs/current/api/</link>
+            <link>https://docs.spring.io/spring-security/site/docs/current/api/</link>
+            <link>https://jakarta.ee/specifications/persistence/2.2/apidocs/</link>
+            <link>https://docs.jboss.org/hibernate/orm/current/javadocs/</link>
+            <link>https://fasterxml.github.io/jackson-core/javadoc/2.12/</link>
+            <link>https://fasterxml.github.io/jackson-databind/javadoc/2.12/</link>
+            <link>https://fasterxml.github.io/jackson-annotations/javadoc/2.12/</link>
+            <link>
+              https://javadoc.io/doc/com.fasterxml.jackson.datatype/jackson-datatype-jdk8/latest/
+            </link>
+            <link>
+              https://javadoc.io/doc/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/latest/
+            </link>
+          </links>
+        </configuration>
+
       </plugin>
     </plugins>
   </build>

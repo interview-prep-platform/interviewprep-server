@@ -69,6 +69,12 @@ public class User {
   @JsonIgnore
   private final List<Question> questions = new LinkedList<>();
 
+  @OneToMany(mappedBy = "user", fetch = FetchType.EAGER,
+      cascade = CascadeType.ALL, orphanRemoval = true)
+  @OrderBy("created DESC")
+  @JsonIgnore
+  private final List<History> histories = new LinkedList<>();
+
   //Getters and setters
 
   /**
@@ -126,4 +132,12 @@ public class User {
   public List<Question> getQuestions() {
     return questions;
   }
+
+  /**
+   * Returns a list of histories from the database.
+   */
+  public List<History> getHistories() {
+    return histories;
+  }
+
 }

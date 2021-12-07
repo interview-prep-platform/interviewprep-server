@@ -2,10 +2,7 @@ package edu.cnm.deepdive.interviewprep.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.UUID;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,16 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 /**
- * This is our Question entity class that represents Question objects in the Database. It is keeping
- * track of all attributes (i.e., id, externalKey, created, question, answer, source).
+ * This is our History entity class that represents History objects in the Database. It is keeping
+ * track of all attributes (i.e., id, externalKey, created, answer).
  */
 @Entity
 @Table(
@@ -31,11 +26,11 @@ import org.hibernate.annotations.CreationTimestamp;
         @Index(columnList = "created")
     }
 )
-public class Question {
+public class History {
 
   @Id
   @GeneratedValue
-  @Column(name = "question_id", nullable = false, updatable = false, columnDefinition = "UUID")
+  @Column(name = "history_id", nullable = false, updatable = false, columnDefinition = "UUID")
   private UUID id;
 
   @Column(nullable = false, updatable = false, columnDefinition = "UUID", unique = true)
@@ -49,26 +44,15 @@ public class Question {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id", updatable = false)
   @JsonIgnore
-
   private User user;
 
-  @OneToMany(mappedBy = "question", fetch = FetchType.EAGER,
-      cascade = CascadeType.ALL, orphanRemoval = true)
-  @OrderBy("created DESC")
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "question_id", updatable = false)
   @JsonIgnore
-  private final List<History> histories = new LinkedList<>();
-
-  @Column(nullable = false, updatable = false, unique = true, length = 2000)
-  private String question;
+  private Question question;
 
   @Column(nullable = true, updatable = false, length = 2000)
   private String answer;
-
-  @Column(nullable = true, updatable = false, length = 100)
-  private String source;
-
-  @Column(nullable = true, updatable = true, length = 2000)
-  private String userAnswer;
 
   /**
    * Returns the primary key identifier for this instance.
@@ -106,16 +90,16 @@ public class Question {
   }
 
   /**
-   * Returns a question in the form of a string.
+   * Returns a Question object for this instance.
    */
-  public String getQuestion() {
+  public Question getQuestion() {
     return question;
   }
 
   /**
-   * Sets a question in the form of a string.
+   * Sets a Question object for this instance.
    */
-  public void setQuestion(String question) {
+  public void setQuestion(Question question) {
     this.question = question;
   }
 
@@ -133,41 +117,4 @@ public class Question {
     this.answer = answer;
   }
 
-  /**
-   * Returns a source in the form of a string.
-   */
-  public String getSource() {
-    return source;
-  }
-
-  /**
-   * Sets a source in the form of a string.
-   * <p>
-   * source
-   */
-  public void setSource(String source) {
-    this.source = source;
-  }
-
-  /**
-   * Returns a user answer in the form of a string.
-   */
-  public String getUserAnswer() {
-    return userAnswer;
-  }
-
-  /**
-   * Sets a user answer in the form of a string.
-   */
-  public void setUserAnswer(String userAnswer) {
-    this.userAnswer = userAnswer;
-  }
-
-  /**
-   * Returns a list of histories from the database.
-   */
-  public List<History> getHistories() {
-    return histories;
-  }
 }
-

@@ -1,11 +1,6 @@
 package edu.cnm.deepdive.interviewprep.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.Date;
 import java.util.UUID;
 import javax.persistence.Column;
@@ -22,8 +17,8 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 /**
- * This is our Question entity class that represents Question objects in the Database. It is keeping
- * track of all attributes (i.e., id, externalKey, created, question, answer, source).
+ * This is our History entity class that represents History objects in the Database. It is keeping
+ * track of all attributes (i.e., id, externalKey, created, answer).
  */
 @Entity
 @Table(
@@ -31,11 +26,11 @@ import org.hibernate.annotations.CreationTimestamp;
         @Index(columnList = "created")
     }
 )
-public class Question {
+public class History {
 
   @Id
   @GeneratedValue
-  @Column(name = "question_id", nullable = false, updatable = false, columnDefinition = "UUID")
+  @Column(name = "history_id", nullable = false, updatable = false, columnDefinition = "UUID")
   private UUID id;
 
   @Column(nullable = false, updatable = false, columnDefinition = "UUID", unique = true)
@@ -46,19 +41,18 @@ public class Question {
   @Column(nullable = false, updatable = false)
   private Date created;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "user_id", updatable = false)
+  @ManyToOne(fetch = FetchType.LAZY,optional = false)
+  @JoinColumn(name = "user_id", updatable = false,nullable = false)
   @JsonIgnore
   private User user;
 
-  @Column(nullable = false, updatable = false, unique = true, length = 2000)
-  private String question;
+  @ManyToOne(fetch = FetchType.LAZY,optional = false)
+  @JoinColumn(name = "question_id", updatable = false,nullable = false)
+  @JsonIgnore
+  private Question question;
 
   @Column(nullable = true, updatable = false, length = 2000)
   private String answer;
-
-  @Column(nullable = true, updatable = false, length = 100)
-  private String source;
 
   /**
    * Returns the primary key identifier for this instance.
@@ -96,16 +90,16 @@ public class Question {
   }
 
   /**
-   * Returns a question in the form of a string.
+   * Returns a Question object for this instance.
    */
-  public String getQuestion() {
+  public Question getQuestion() {
     return question;
   }
 
   /**
-   * Sets a question in the form of a string.
+   * Sets a Question object for this instance.
    */
-  public void setQuestion(String question) {
+  public void setQuestion(Question question) {
     this.question = question;
   }
 
@@ -123,21 +117,4 @@ public class Question {
     this.answer = answer;
   }
 
-  /**
-   * Returns a source in the form of a string.
-   */
-  public String getSource() {
-    return source;
-  }
-
-  /**
-   * Sets a source in the form of a string.
-   * <p>
-   * source
-   */
-  public void setSource(String source) {
-    this.source = source;
-  }
-
 }
-

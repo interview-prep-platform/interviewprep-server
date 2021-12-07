@@ -37,7 +37,7 @@ import org.hibernate.annotations.CreationTimestamp;
     }
 )
 @JsonInclude(Include.NON_NULL)
-@JsonPropertyOrder({"id, created, displayName"})
+@JsonPropertyOrder({"id", "created", "displayName"})
 public class User {
 
   @Id
@@ -53,6 +53,7 @@ public class User {
   @CreationTimestamp
   @Temporal(value = TemporalType.TIMESTAMP)
   @Column(nullable = false, updatable = false)
+  @JsonProperty(access = Access.READ_ONLY)
   private Date created;
 
   @Column(nullable = false, updatable = false, unique = true, length = 30)

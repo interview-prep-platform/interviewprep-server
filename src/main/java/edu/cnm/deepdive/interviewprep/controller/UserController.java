@@ -30,7 +30,7 @@ public class UserController {
 
   /**
    * This method defines the behavior of a GET request to the URL /interviewprep/users/me. It grabs
-   * the current user from the User service.
+   * the current user from the {@link User} service.
    *
    * @return A User object in the form of JSON.
    */

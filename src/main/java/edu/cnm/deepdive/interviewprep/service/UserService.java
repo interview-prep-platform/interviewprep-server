@@ -44,7 +44,7 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
 
 
   /**
-   * Queries the database for a User object defined by Oauth key. If a User object doesn't exist it
+   * Queries the database for a {@link User} object defined by Oauth key. If a User object doesn't exist it
    * gets added to the database.
    *
    * @param oauthKey    An OAuth key in the form of a string.
@@ -63,7 +63,7 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
   }
 
   /**
-   * Returns a User object that matches the id.
+   * Returns a {@link User} object that matches the id.
    *
    * @param id Id in the form of a universally unique identifier.
    * @return An optional User object.
@@ -73,7 +73,7 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
   }
 
   /**
-   * Returns a User that matches the external key.
+   * Returns a {@link User} that matches the external key.
    *
    * @param externalKey External key in the form of a universally unique identifier.
    * @return An optional User object.
@@ -83,7 +83,7 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
   }
 
   /**
-   * Returns a list of Users ordered by display name in ascending order.
+   * Returns a list of {@link User} ordered by display name in ascending order.
    *
    * @return A list of User objects.
    */
@@ -102,7 +102,7 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
   }
 
   /**
-   * Deletes a User object that matches the parameter user from the database.
+   * Deletes a {@link User} object that matches the parameter user from the database.
    *
    * @param user A User Object.
    */
@@ -111,7 +111,7 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
   }
 
   /**
-   * Gets a current User object from the database.
+   * Gets a current {@link User} object from the database.
    *
    * @return A User object.
    */
@@ -123,7 +123,7 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
   }
 
   /**
-   * Updates the current User object records from the provided updated User record, and saves the
+   * Updates the current {@link User} object records from the provided updated User record, and saves the
    * result to the database.
    *
    * @param updateUser User deserialized from body of request.

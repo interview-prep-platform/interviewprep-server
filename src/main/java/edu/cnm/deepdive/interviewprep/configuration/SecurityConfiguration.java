@@ -63,7 +63,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   }
 
   /**
-   * This method allows user to access a bearer token.
+   * This method allows user to access a decoded and validated bearer token.
    *
    * @return JWT Decoder object
    */

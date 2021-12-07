@@ -18,7 +18,7 @@ public class QuestionService {
   private final QuestionRepository questionRepository;
 
   /**
-   * Constructor that instantiates a new Question service object.
+   * Constructor that instantiates a new {@link Question} service object.
    *
    * @param questionRepository Question repository object.
    */
@@ -29,7 +29,7 @@ public class QuestionService {
   }
 
   /**
-   * Returns a Question object identified by the external key for the current user.
+   * Returns a {@link Question} object identified by the external key for the current user.
    *
    * @param externalKey External key in the form of a universally unique identifier.
    * @param user        A User object.
@@ -41,7 +41,7 @@ public class QuestionService {
 
 
   /**
-   * Deletes a Question object identified by external key for the current user.
+   * Deletes a {@link Question} object identified by external key for the current user.
    *
    * @param externalKey External key in the form of a universally unique identifier.
    * @param user        A User object.
@@ -54,7 +54,7 @@ public class QuestionService {
 
 
   /**
-   * Returns a list of all Questions in the database.
+   * Returns a list of all {@link Question} in the database.
    *
    * @return A list of all Question objects.
    */
@@ -63,28 +63,17 @@ public class QuestionService {
   }
 
   /**
-   * Gets the current Question object records from the database identified by id.
-   *
-   * @param id Id in the form of a universally unique identifier.
-   * @return An optional Question object.
-   */
-  public Optional<Question> get(UUID id) {
-    return questionRepository.findById(id);
-  }
-
-
-  /**
    * Gets the current Question object records from the database identified by external key.
    *
-   * @param externalKey External key in the form of a universally unique identifier.
+   * @param externalKey Id in the form of a universally unique identifier.
    * @return An optional Question object.
    */
-  public Optional<Question> getByExternalKey(UUID externalKey) {
+  public Optional<Question> get(UUID externalKey) {
     return questionRepository.findByExternalKey(externalKey);
   }
 
   /**
-   * Creates a new Question object in the database for the current user.
+   * Creates a new {@link Question} object in the database for the current user.
    *
    * @param question A Question object.
    * @param user     A User object.
@@ -98,16 +87,7 @@ public class QuestionService {
   }
 
   /**
-   * Deletes a Question object identified by the id.
-   *
-   * @param id An Id in the form of a universally unique identifier.
-   */
-  public void delete(UUID id) {
-    questionRepository.deleteById(id);
-  }
-
-  /**
-   * Saves a Question object to the database for the current user.
+   * Saves a {@link Question} object to the database for the current user.
    *
    * @param question A Question object.
    * @param user     A User object.
@@ -121,7 +101,7 @@ public class QuestionService {
   }
 
   /**
-   * Returns a random Question object from the database.
+   * Returns a random {@link Question} object from the database.
    *
    * @return A random Question object.
    */
@@ -131,5 +111,23 @@ public class QuestionService {
         .orElseThrow();//throws an exception if not in the database
   }
 
+  /**
+   * Updates a {@link Question} object to the database for the current user.
+   *
+   * @param externalKey External key in the form of a universally unique identifier.
+   * @param question A Question object.
+   * @param user     A User object.
+   * @return A Question object.
+   */
+  public Optional<Question> updateQuestion(UUID externalKey, Question question, User user) {
+    return questionRepository
+        .findByExternalKey(externalKey)
+        .map((q) -> { //if we don't have anthing returned from the optional, then the map won't execute
+          q.setQuestion(question.getQuestion());
+          q.setAnswer(question.getAnswer());
+          q.setSource(question.getSource());
+          return questionRepository.save(q);
+        });
+  }
 
 }

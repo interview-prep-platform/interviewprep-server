@@ -1,11 +1,13 @@
 package edu.cnm.deepdive.interviewprep.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.UUID;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,8 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -49,14 +49,7 @@ public class Question {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id", updatable = false)
   @JsonIgnore
-
   private User user;
-
-  @OneToMany(mappedBy = "question", fetch = FetchType.EAGER,
-      cascade = CascadeType.ALL, orphanRemoval = true)
-  @OrderBy("created DESC")
-  @JsonIgnore
-  private final List<History> histories = new LinkedList<>();
 
   @Column(nullable = false, updatable = false, unique = true, length = 2000)
   private String question;
@@ -100,6 +93,8 @@ public class Question {
 
   /**
    * Sets a User object for this instance.
+   *
+   *
    */
   public void setUser(User user) {
     this.user = user;
@@ -114,6 +109,8 @@ public class Question {
 
   /**
    * Sets a question in the form of a string.
+   *
+   *
    */
   public void setQuestion(String question) {
     this.question = question;
@@ -128,6 +125,8 @@ public class Question {
 
   /**
    * Sets an answer in the form of a string.
+   *
+   *
    */
   public void setAnswer(String answer) {
     this.answer = answer;
@@ -142,8 +141,8 @@ public class Question {
 
   /**
    * Sets a source in the form of a string.
-   * <p>
-   * source
+   *
+   *  source
    */
   public void setSource(String source) {
     this.source = source;
@@ -158,16 +157,11 @@ public class Question {
 
   /**
    * Sets a user answer in the form of a string.
+   *
+   *
    */
   public void setUserAnswer(String userAnswer) {
     this.userAnswer = userAnswer;
-  }
-
-  /**
-   * Returns a list of histories from the database.
-   */
-  public List<History> getHistories() {
-    return histories;
   }
 }
 

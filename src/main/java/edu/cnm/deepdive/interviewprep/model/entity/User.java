@@ -64,13 +64,13 @@ public class User {
   private String displayName;
 
   //This private field is only saying games has to point at one list. We can change/add to the items of the list.
-  @OneToMany(mappedBy = "user", fetch = FetchType.EAGER,
+  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
       cascade = CascadeType.ALL, orphanRemoval = true)
   @OrderBy("created DESC")
   @JsonIgnore
   private final List<Question> questions = new LinkedList<>();
 
-  @OneToMany(mappedBy = "user", fetch = FetchType.EAGER,
+  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
       cascade = CascadeType.ALL, orphanRemoval = true)
   @OrderBy("created DESC")
   @JsonIgnore

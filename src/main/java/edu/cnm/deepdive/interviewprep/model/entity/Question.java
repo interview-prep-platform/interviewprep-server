@@ -60,9 +60,6 @@ public class Question {
   @Column(nullable = true, updatable = false, length = 100)
   private String source;
 
-  @Column(nullable = true, updatable = true, length = 2000)
-  private String userAnswer;
-
   /**
    * Returns the primary key identifier for this instance.
    */
@@ -93,8 +90,6 @@ public class Question {
 
   /**
    * Sets a User object for this instance.
-   *
-   *
    */
   public void setUser(User user) {
     this.user = user;
@@ -109,8 +104,6 @@ public class Question {
 
   /**
    * Sets a question in the form of a string.
-   *
-   *
    */
   public void setQuestion(String question) {
     this.question = question;
@@ -125,8 +118,6 @@ public class Question {
 
   /**
    * Sets an answer in the form of a string.
-   *
-   *
    */
   public void setAnswer(String answer) {
     this.answer = answer;
@@ -141,27 +132,12 @@ public class Question {
 
   /**
    * Sets a source in the form of a string.
-   *
-   *  source
+   * <p>
+   * source
    */
   public void setSource(String source) {
     this.source = source;
   }
 
-  /**
-   * Returns a user answer in the form of a string.
-   */
-  public String getUserAnswer() {
-    return userAnswer;
-  }
-
-  /**
-   * Sets a user answer in the form of a string.
-   *
-   *
-   */
-  public void setUserAnswer(String userAnswer) {
-    this.userAnswer = userAnswer;
-  }
 }
 

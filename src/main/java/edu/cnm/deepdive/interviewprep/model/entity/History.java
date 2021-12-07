@@ -41,13 +41,13 @@ public class History {
   @Column(nullable = false, updatable = false)
   private Date created;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "user_id", updatable = false)
+  @ManyToOne(fetch = FetchType.LAZY,optional = false)
+  @JoinColumn(name = "user_id", updatable = false,nullable = false)
   @JsonIgnore
   private User user;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "question_id", updatable = false)
+  @ManyToOne(fetch = FetchType.LAZY,optional = false)
+  @JoinColumn(name = "question_id", updatable = false,nullable = false)
   @JsonIgnore
   private Question question;
 

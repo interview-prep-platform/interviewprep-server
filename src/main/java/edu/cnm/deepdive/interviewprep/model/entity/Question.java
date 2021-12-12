@@ -36,9 +36,11 @@ public class Question {
   @Id
   @GeneratedValue
   @Column(name = "question_id", nullable = false, updatable = false, columnDefinition = "UUID")
+  @JsonIgnore
   private UUID id;
 
   @Column(nullable = false, updatable = false, columnDefinition = "UUID", unique = true)
+  @JsonProperty(value = "id", access = Access.READ_ONLY)
   private UUID externalKey = UUID.randomUUID();
 
   @CreationTimestamp

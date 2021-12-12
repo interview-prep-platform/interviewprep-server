@@ -20,7 +20,8 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
-# Enable the following lines ONLY for DDL generation.
+
+## Enable the following lines ONLY for DDL generation.
 #    properties:
 #      javax:
 #        persistence:

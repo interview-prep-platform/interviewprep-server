@@ -121,13 +121,17 @@ public class QuestionService {
    */
   public Optional<Question> updateQuestion(UUID externalKey, Question question, User user) {
     return questionRepository
-        .findByExternalKey(externalKey)
+        .findByExternalKeyAndUser(externalKey, user)
         .map((q) -> { //if we don't have anything returned from the optional, then the map won't execute
+          //q.setUser(user);
           q.setQuestion(question.getQuestion());
           q.setAnswer(question.getAnswer());
           q.setSource(question.getSource());
           return questionRepository.save(q);
         });
+//        .orElseGet(() -> {
+//          return questionRepository.save(question);
+//        });
   }
 
 }

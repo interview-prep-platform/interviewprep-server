@@ -25,6 +25,7 @@ import org.hibernate.annotations.CreationTimestamp;
  * This is our Question entity class that represents Question objects in the Database. It is keeping
  * track of all attributes (i.e., id, externalKey, created, question, answer, source).
  */
+@SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
 @Table(
     indexes = {
@@ -53,13 +54,13 @@ public class Question {
   @JsonIgnore
   private User user;
 
-  @Column(nullable = false, updatable = false, unique = true, length = 2000)
+  @Column(nullable = false, updatable = true, unique = true, length = 2000)
   private String question;
 
-  @Column(nullable = true, updatable = false, length = 2000)
+  @Column(nullable = true, updatable = true, length = 2000)
   private String answer;
 
-  @Column(nullable = true, updatable = false, length = 100)
+  @Column(nullable = true, updatable = true, length = 100)
   private String source;
 
   /**

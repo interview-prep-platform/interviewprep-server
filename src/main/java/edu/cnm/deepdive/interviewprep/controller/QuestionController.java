@@ -82,7 +82,7 @@ public class QuestionController {
   public Question put(@PathVariable UUID questionId, @RequestBody Question question) {
     return questionService
         .updateQuestion(questionId, question, userService.getCurrentUser())
-        .orElseThrow(() -> new IllegalArgumentException("Not found"));
+        .orElseThrow();
   }
 
   /**

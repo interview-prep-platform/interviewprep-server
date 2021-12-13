@@ -1,5 +1,6 @@
 package edu.cnm.deepdive.interviewprep.service;
 
+import edu.cnm.deepdive.interviewprep.model.dao.CategoryRepository;
 import edu.cnm.deepdive.interviewprep.model.dao.QuestionRepository;
 import edu.cnm.deepdive.interviewprep.model.entity.Question;
 import edu.cnm.deepdive.interviewprep.model.entity.User;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class QuestionService {
 
   private final QuestionRepository questionRepository;
+  private final CategoryRepository categoryRepository;
 
   /**
    * Constructor that instantiates a new {@link Question} service object.
@@ -26,8 +28,9 @@ public class QuestionService {
    */
   @Autowired
   public QuestionService(
-      QuestionRepository questionRepository) {
+      QuestionRepository questionRepository, CategoryRepository categoryRepository) {
     this.questionRepository = questionRepository;
+    this.categoryRepository = categoryRepository;
   }
 
   /**
@@ -137,5 +140,11 @@ public class QuestionService {
     return questionRepository.getAllByOrderByQuestionAsc();
   }
 
-
+  public Optional<Boolean> assignCategoryToQuestion(UUID questionKey, UUID categoryKey, boolean assign, User user) {
+    return questionRepository
+        .findByExternalKeyAndUser(questionKey, user)
+        .map((question) -> {
+          categoryRepository.findByExternalKey(categoryKey);
+        })
+  }
 }

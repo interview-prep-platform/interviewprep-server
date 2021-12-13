@@ -7,7 +7,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +20,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,6 +33,7 @@ import org.hibernate.annotations.CreationTimestamp;
  * This is our Question entity class that represents Question objects in the Database. It is keeping
  * track of all attributes (i.e., id, externalKey, created, question, answer, source).
  */
+@SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
 @Table(
     indexes = {
@@ -53,14 +62,23 @@ public class Question {
   @JsonIgnore
   private User user;
 
-  @Column(nullable = false, updatable = false, unique = true, length = 2000)
+  @Column(nullable = false, updatable = true, unique = true, length = 2000)
   private String question;
 
-  @Column(nullable = true, updatable = false, length = 2000)
+  @Column(nullable = true, updatable = true, length = 2000)
   private String answer;
 
-  @Column(nullable = true, updatable = false, length = 100)
+  @Column(nullable = true, updatable = true, length = 100)
   private String source;
+
+  @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH})
+  @JoinTable(
+      name = "question_category",
+      joinColumns = @JoinColumn(name = "question_id"),
+      inverseJoinColumns = @JoinColumn(name = "category_id")
+  )
+  @OrderBy("name ASC")
+  private Set<Category> categories = new LinkedHashSet<>();
 
   /**
    * Returns the primary key identifier for this instance.
@@ -141,5 +159,8 @@ public class Question {
     this.source = source;
   }
 
+  public Set<Category> getCategories() {
+    return categories;
+  }
 }
 

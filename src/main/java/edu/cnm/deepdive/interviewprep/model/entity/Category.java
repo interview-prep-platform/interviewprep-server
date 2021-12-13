@@ -7,12 +7,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.ManyToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -52,6 +57,10 @@ public class Category {
   @Column(nullable = false, unique = true, length = 40)
   private String name;
 
+  @ManyToMany(fetch = FetchType.LAZY,mappedBy = "categories")
+  @OrderBy("question ASC")
+  private List<Question> questions = new LinkedList<>();
+
   /**
    * Returns the primary key identifier for this instance.
    */
@@ -85,6 +94,10 @@ public class Category {
    */
   public void setName(String name) {
     this.name = name;
+  }
+
+  public List<Question> getQuestions() {
+    return questions;
   }
 }
 

@@ -120,4 +120,9 @@ public class QuestionController {
     return questionService
         .getQuestions();
   }
+
+  @PutMapping(value = "/{questionKey}/categories/{categoryKey}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  public boolean setQuestionCategory(@PathVariable UUID questionKey, @PathVariable UUID categoryKey, @RequestBody boolean assign) {
+
+  }
 }

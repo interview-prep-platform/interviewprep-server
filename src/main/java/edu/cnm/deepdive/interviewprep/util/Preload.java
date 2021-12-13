@@ -32,6 +32,7 @@ public class Preload implements CommandLineRunner {
     try (InputStream input = resource.getInputStream()) {
       ObjectMapper mapper = new ObjectMapper();
       List<Question> listQuestions = mapper.readValue(input, new TypeReference<List<Question>>(){});
+      repository.saveAllAndFlush(listQuestions);
       System.out.println("ListQuestions: " + listQuestions.toString());
     }
   }

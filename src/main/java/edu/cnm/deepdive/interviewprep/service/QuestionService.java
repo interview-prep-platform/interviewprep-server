@@ -63,8 +63,8 @@ public class QuestionService {
    *
    * @return A list of all Question objects.
    */
-  public List<Question> getQuestions() {
-    return questionRepository.findAll();
+  public Iterable<Question> getQuestions() {
+    return questionRepository.getAllByOrderByQuestionAsc();
   }
 
   /**
@@ -143,8 +143,22 @@ public class QuestionService {
   public Optional<Boolean> assignCategoryToQuestion(UUID questionKey, UUID categoryKey, boolean assign, User user) {
     return questionRepository
         .findByExternalKeyAndUser(questionKey, user)
+        .flatMap((question) ->
+          categoryRepository
+              .findByExternalKey(categoryKey)
+              .map((category) -> {
+                if (assign) {
+                  question.getCategories().add(category);
+                } else {
+                  question.getCategories().remove(category);
+                }
+                //TODO we must implement equals and hashcode on category
+                return question;
+              })
+        )
         .map((question) -> {
-          categoryRepository.findByExternalKey(categoryKey);
-        })
+          questionRepository.save(question);
+          return assign;
+        });
   }
 }

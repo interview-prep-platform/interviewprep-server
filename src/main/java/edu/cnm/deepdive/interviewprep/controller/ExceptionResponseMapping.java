@@ -1,6 +1,7 @@
 package edu.cnm.deepdive.interviewprep.controller;
 
 import java.util.NoSuchElementException;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * friendly status code in the header response.
  */
 @RestControllerAdvice
+@Profile("service")
 public class ExceptionResponseMapping {
 
   /**

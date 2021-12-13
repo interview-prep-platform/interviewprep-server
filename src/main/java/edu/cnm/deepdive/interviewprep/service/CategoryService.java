@@ -7,6 +7,7 @@ import edu.cnm.deepdive.interviewprep.model.entity.User;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
  * This class implements the high level persistence and business logic for the {@link Category} entity.
  */
 @Service
+@Profile("service")
 public class CategoryService {
 
   private final CategoryRepository categoryRepository;

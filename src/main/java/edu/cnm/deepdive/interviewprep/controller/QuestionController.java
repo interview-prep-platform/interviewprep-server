@@ -5,6 +5,7 @@ import edu.cnm.deepdive.interviewprep.service.QuestionService;
 import edu.cnm.deepdive.interviewprep.service.UserService;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/questions")
+@Profile("service")
 public class QuestionController {
 
   private final QuestionService questionService;
@@ -50,7 +52,7 @@ public class QuestionController {
    * @return A Question object in the form of JSON.
    */
   @GetMapping(value = "/{externalKey}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Question get(@PathVariable UUID externalKey) {
+  public Question getAll(@PathVariable UUID externalKey) {
     return questionService
         .get(externalKey)
         .orElseThrow();
@@ -114,7 +116,7 @@ public class QuestionController {
    * @return a list of all questions from database via the question service.
    */
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public Iterable<Question> get() {
+  public Iterable<Question> getAll() {
     return questionService
         .getQuestions();
   }

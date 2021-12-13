@@ -47,5 +47,6 @@ public interface QuestionRepository extends JpaRepository<Question, UUID> {
   @Query(value = "SELECT * FROM question ORDER BY RAND() limit 1", nativeQuery = true)
   Optional<Question> findRandom();
 
+  Iterable<Question> getAllByOrderByQuestionAsc();
 
 }

@@ -7,12 +7,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 /**
  * This class implements the high level persistence and business logic for the Question entity.
  */
 @Service
+@Profile("service")
 public class QuestionService {
 
   private final QuestionRepository questionRepository;
@@ -129,9 +131,11 @@ public class QuestionService {
           q.setSource(question.getSource());
           return questionRepository.save(q);
         });
-//        .orElseGet(() -> {
-//          return questionRepository.save(question);
-//        });
   }
+
+  public Iterable<Question> getAllQuestions() {
+    return questionRepository.getAllByOrderByQuestionAsc();
+  }
+
 
 }

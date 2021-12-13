@@ -1,0 +1,77 @@
+[
+  {
+    "question": "What is a static variable?",
+    "answer": "A variable that is shared by all classes",
+    "source": "dzone.com, DeepDive"
+  },
+  {
+    "question": "If I change the order of a method’s modifiers, will it still work?  Is public static void main the same as public void static main?  What about void static public main?",
+    "answer": "Yes (void has to be right in front of main), otherwise it works, but the convention is to put the visibility modifier at the start",
+    "source": "dzone.com, Nick Bennett"
+  },
+  {
+    "question": "If we don’t specify public, private, or protected, what is the default visibility?",
+    "answer": "package private is the default",
+    "source": "Deep Dive"
+  },
+  {
+    "question": "When would you pick an ArrayList versus LinkedList?",
+    "answer": "ArrayList still has indexing like an array, but can increase its size as add things. LinkedList references chains of objects.  ArrayList is faster if you know the access, LinkedList better if you are reading from the end or adding to the end.  If you need to retrieve or get values from somewhere in the middle of the structure, then ArrayList is faster.  If you are going through a list in order, then use a LinkedList, but if you are adding to middle, then want to use ArrayList.",
+    "source": "DeepDive"
+  },
+  {
+    "question": "What are the different access modifiers and what do they mean?",
+    "answer": "Private: only see within class.  Public: anyone anywhere can see itProtected: package private plus subclasses of those class, then no one else can see it.  (includes the subclasses of the class).  Package private: only be accessed within the package.",
+    "source": "DeepDive"
+  },
+  {
+    "question": "What is the default access modifier for an interface?",
+    "answer": "Public",
+    "source": "DeepDive"
+  },
+  {
+    "question": "What is the default access modifier for an enum?",
+    "answer": "Package private, but constructor is private.",
+    "source": "DeepDive"
+  },
+  {
+    "question": "If you want to prevent your classes or methods from being overridden, how would you do that?",
+    "answer": "Add final to it. (can’t inherit from it).  Final: stops inheritance to class or method.",
+    "source": "DeepDive"
+  },
+  {
+    "question": "What is an immutable object?",
+    "answer": "An object can’t be modified.",
+    "source": "DeepDive"
+  },
+  {
+    "question": "What is the difference between overloading and overriding?",
+    "answer": "Overloading is where change the method signature. Overriding is when put different functionality into a method.",
+    "source": "DeepDive"
+  },
+  {
+    "question": "Can a constructor be overloaded?",
+    "answer": "Yes",
+    "source": "DeepDive"
+  },
+  {
+    "question": "Can a constructor be overridden?",
+    "answer": "No",
+    "source": "DeepDive"
+  },
+  {
+    "question": "Can static methods be overridden?",
+    "answer": "No",
+    "source": "DeepDive"
+  },
+  {
+    "question": "Does java support multiple inheritance?",
+    "answer": "No.  A class can only extend one class.",
+    "source": "DeepDive"
+  },
+  {
+    "question": "Can one class implement multiple interfaces?",
+    "answer": "Yes.",
+    "source": "DeepDive"
+  }
+]

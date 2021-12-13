@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: ddl
+  main:
+    web-application-type: none
+  datasource:
+    url: jdbc:h2:file:./db/interviewprep
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+    ## Enable the following lines ONLY for DDL generation.
+    properties:
+      javax:
+        persistence:
+          schema-generation:
+            create-source: metadata
+            scripts:
+              action: create
+              create-target: target/sql/ddl.sql

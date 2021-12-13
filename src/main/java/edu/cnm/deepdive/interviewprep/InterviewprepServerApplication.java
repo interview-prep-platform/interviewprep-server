@@ -13,7 +13,7 @@ import org.springframework.context.ApplicationContextAware;
  * This is the main class that initiates the Spring server application.
  */
 @SpringBootApplication
-public class InterviewprepServerApplication implements ApplicationContextAware {
+public class InterviewprepServerApplication {
 
 
   /**
@@ -22,17 +22,7 @@ public class InterviewprepServerApplication implements ApplicationContextAware {
    * @param args A String array of arguments.
    */
   public static void main(String[] args) {
-    try {
-      InputStream input = context.getResources().openRawResource(R.raw.doctors);
-      CSVHelper.csvToTutorials(input);
-    } catch (Exception e) {
-
-    }
     SpringApplication.run(InterviewprepServerApplication.class, args);
   }
 
-  @Override
-  public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-
-  }
 }

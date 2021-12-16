@@ -1,0 +1,16 @@
+Question; Answer; Source
+What is a static variable?; A variable that is shared by all classes; dzone.com, DeepDive
+If I change the order of a method’s modifiers, will it still work?  Is public static void main the same as public void static main?  What about void static public main?; Yes (void has to be right in front of main), otherwise it works, but the convention is to put the visibility modifier at the start; dzone.com, Nick Bennett
+If we don’t specify public, private, or protected, what is the default visibility?; package private is the default; Deep Dive
+When would you pick an ArrayList versus LinkedList?; ArrayList still has indexing like an array, but can increase its size as add things. LinkedList references chains of objects.  ArrayList is faster if you know the access, LinkedList better if you are reading from the end or adding to the end.  If you need to retrieve or get values from somewhere in the middle of the structure, then ArrayList is faster.  If you are going through a list in order, then use a LinkedList, but if you are adding to middle, then want to use ArrayList.  ;DeepDive
+What are the different access modifiers and what do they mean?; Private: only see within class.  Public: anyone anywhere can see itProtected: package private plus subclasses of those class, then no one else can see it.  (includes the subclasses of the class).  Package private: only be accessed within the package.; DeepDive
+What is the default access modifier for an interface? ; Public; DeepDive
+What is the default access modifier for an enum? ; Package private, but constructor is private. ; DeepDive
+If you want to prevent your classes or methods from being overridden, how would you do that? ; Add final to it. (can’t inherit from it).  Final: stops inheritance to class or method.; DeepDive
+What is an immutable object?; An object can’t be modified.; DeepDive
+What is the difference between overloading and overriding?; Overloading is where change the method signature. Overriding is when put different functionality into a method.; DeepDive
+Can a constructor be overloaded?; Yes; DeepDive
+Can a constructor be overridden?; No; DeepDive
+Can static methods be overridden?; No; DeepDive
+Does java support multiple inheritance?; No.  A class can only extend one class.; DeepDive
+Can one class implement multiple interfaces?; Yes.; DeepDive

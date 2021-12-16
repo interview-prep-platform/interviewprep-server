@@ -1,9 +1,11 @@
 package edu.cnm.deepdive.interviewprep.configuration;
 
 import java.util.List;
+import org.hibernate.annotations.FetchProfiles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,6 +28,7 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
  */
 @Configuration
 @EnableWebSecurity
+@Profile("service")
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   private final Converter<Jwt, ? extends AbstractAuthenticationToken> converter;

@@ -1,32 +1,9 @@
-server:
-  error:
-    include-message: always
-  forward-headers-strategy: native
-  port: 18081
-  servlet:
-    context-path: /interviewprep
-
 spring:
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: https://accounts.google.com
-          client-id: 878044594447-nckmut9kmfrkc0joj96uifo5hk0mraeh.apps.googleusercontent.com
-
+  profiles:
+    active: service
   datasource:
     url: jdbc:h2:file:./db/interviewprep
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
-
-## Enable the following lines ONLY for DDL generation.
-#    properties:
-#      javax:
-#        persistence:
-#          schema-generation:
-#            create-source: metadata
-#            scripts:
-#              action: create
-#              create-target: target/sql/ddl.sql

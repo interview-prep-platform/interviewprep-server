@@ -1,5 +1,6 @@
 package edu.cnm.deepdive.interviewprep.service;
 
+import edu.cnm.deepdive.interviewprep.model.dao.CategoryRepository;
 import edu.cnm.deepdive.interviewprep.model.dao.QuestionRepository;
 import edu.cnm.deepdive.interviewprep.model.entity.Question;
 import edu.cnm.deepdive.interviewprep.model.entity.User;
@@ -7,15 +8,18 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 /**
  * This class implements the high level persistence and business logic for the Question entity.
  */
 @Service
+@Profile("service")
 public class QuestionService {
 
   private final QuestionRepository questionRepository;
+  private final CategoryRepository categoryRepository;
 
   /**
    * Constructor that instantiates a new {@link Question} service object.
@@ -24,8 +28,9 @@ public class QuestionService {
    */
   @Autowired
   public QuestionService(
-      QuestionRepository questionRepository) {
+      QuestionRepository questionRepository, CategoryRepository categoryRepository) {
     this.questionRepository = questionRepository;
+    this.categoryRepository = categoryRepository;
   }
 
   /**
@@ -58,8 +63,8 @@ public class QuestionService {
    *
    * @return A list of all Question objects.
    */
-  public List<Question> getQuestions() {
-    return questionRepository.findAll();
+  public Iterable<Question> getQuestions() {
+    return questionRepository.getAllByOrderByQuestionAsc();
   }
 
   /**
@@ -129,9 +134,31 @@ public class QuestionService {
           q.setSource(question.getSource());
           return questionRepository.save(q);
         });
-//        .orElseGet(() -> {
-//          return questionRepository.save(question);
-//        });
   }
 
+  public Iterable<Question> getAllQuestions() {
+    return questionRepository.getAllByOrderByQuestionAsc();
+  }
+
+  public Optional<Boolean> assignCategoryToQuestion(UUID questionKey, UUID categoryKey, boolean assign, User user) {
+    return questionRepository
+        .findByExternalKeyAndUser(questionKey, user)
+        .flatMap((question) ->
+          categoryRepository
+              .findByExternalKey(categoryKey)
+              .map((category) -> {
+                if (assign) {
+                  question.getCategories().add(category);
+                } else {
+                  question.getCategories().remove(category);
+                }
+                //TODO we must implement equals and hashcode on category
+                return question;
+              })
+        )
+        .map((question) -> {
+          questionRepository.save(question);
+          return assign;
+        });
+  }
 }

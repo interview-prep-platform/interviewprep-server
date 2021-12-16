@@ -7,6 +7,7 @@ import edu.cnm.deepdive.interviewprep.service.QuestionService;
 import edu.cnm.deepdive.interviewprep.service.UserService;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/categories")
+@Profile("service")
 public class CategoryController {
 
   private final CategoryService categoryService;
@@ -37,6 +39,17 @@ public class CategoryController {
   @Autowired
   public CategoryController(CategoryService categoryService) {
     this.categoryService = categoryService;
+  }
+
+  /**
+   * This method defines the behavior of a GET request to the URL /interviewprep/categories.
+   *
+   * @return a list of all categories from database via the category service.
+   */
+  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+  public Iterable<Category> get() {
+    return categoryService
+        .getCategories();
   }
 
   /**
@@ -94,14 +107,5 @@ public class CategoryController {
     categoryService.delete(externalKey);
   }
 
-  /**
-   * This method defines the behavior of a GET request to the URL /interviewprep/categories.
-   *
-   * @return a list of all categories from database via the category service.
-   */
-  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public Iterable<Category> get() {
-    return categoryService
-        .getCategories();
-  }
+
 }

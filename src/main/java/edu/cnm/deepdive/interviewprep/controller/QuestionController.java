@@ -5,6 +5,7 @@ import edu.cnm.deepdive.interviewprep.service.QuestionService;
 import edu.cnm.deepdive.interviewprep.service.UserService;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/questions")
+@Profile("service")
 public class QuestionController {
 
   private final QuestionService questionService;
@@ -114,8 +116,15 @@ public class QuestionController {
    * @return a list of all questions from database via the question service.
    */
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public Iterable<Question> get() {
+  public Iterable<Question> getAll() {
     return questionService
         .getQuestions();
+  }
+
+  @PutMapping(value = "/{questionKey}/categories/{categoryKey}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  public boolean setQuestionCategory(@PathVariable UUID questionKey, @PathVariable UUID categoryKey, @RequestBody boolean assign) {
+    return questionService
+        .assignCategoryToQuestion(questionKey, categoryKey, assign, userService.getCurrentUser())
+        .orElseThrow();
   }
 }

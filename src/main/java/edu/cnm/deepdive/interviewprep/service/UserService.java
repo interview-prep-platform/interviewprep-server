@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
  * This class implements the high level persistence and business logic for the User entity.
  */
 @Service
+@Profile("service")
 public class UserService implements Converter<Jwt, UsernamePasswordAuthenticationToken> {
 
   private final UserRepository repository;

@@ -14,3 +14,34 @@ Can a constructor be overridden?; No; DeepDive
 Can static methods be overridden?; No; DeepDive
 Does java support multiple inheritance?; No.  A class can only extend one class.; DeepDive
 Can one class implement multiple interfaces?; Yes.; DeepDive
+What is an abstract class?; A class cannot be instantiated.; DeepDive
+Can you extend an abstract class? ; Yes ; DeepDive
+Does java support goto? ;No; DeepDive
+What three items are required in order to iterate over an array or collection using the enhanced-for syntax? ;
+1.	The contents of the array or collection must not be replaced in the body of the for loop.
+2.	Iteration must be in "natural" order—that is, from start to finish.
+3.	The iteration index variable will not be available, and thus must not be required by the code in the body of the for loop?; DeepDive
+What is typically inflated to construct a menu of options presented to the user in the Android UI—e.g. in a navigation drawer, or in the action bar at the top of the screen?;An XML document with a <menu> element root and zero or more <item> or <group> child elements.; DeepDive
+Android resources (including layouts, menus, strings, etc.) may be customized using qualifiers for which of the following?
+1.	Whether the Gmail app is installed or not
+2.	User country/region
+3.	Device manufacturer
+4.	Screen orientation
+5.	Screen size; DeepDive
+
+Explain the build process in Android?; The build process in Android involves three steps
+•	The first step consists of the compilation of the resources folder using the Android Asset Packaging Tool (AAPT). These are compiled into a single class file known as R.java, which only holds constants.
+•	In the second step, the java source code needs to be compiled to .class files using javac, which are then converted to Dalvik bytecode using the ‘dx’ tool, which is one of the tools in the software development kit. The final output file is classes.ex.
+•	In the third and final step, the Android apkbuilder is required to take all the inputs and build the Android Packaging Key (APK) file.
+; https://hackr.io/blog/android-interview-questions
+List some languages that can be used to program in Android; Java, Kotlin, C#, Python
+Describe the lifecycle of an activity;
+•	OnCreate(): Here, the views are created and data is collected from bundles.
+•	OnStart(): It is called if the activity is visible to the user. It may be succeeded by onResume() if the activity reaches the foreground and onStop() if it converts into hidden.
+•	OnResume(): It is called when the activity starts an interaction with the user.
+•	OnPause(): This is called when the activity is going to the background but hasn’t been killed yet.
+•	OnStop(): This is called when you are no longer visible to the user.
+•	OnDestroy(): Called when the activity is finishing
+•	OnRestart(): Called after the activity has been stopped, prior to it being started again; ; https://hackr.io/blog/android-interview-questions
+What is Android Runtime?;Android Runtime (ART) is an application used by the Android OS as a runtime environment. It has now replaced Dalvik, a discontinued process Virtual Machine (VM). ART translates the bytecode of the application into native instructions, which are carried out by the device’s runtime environment.; https://hackr.io/blog/android-interview-questions
+What is Context?; Activity Context: This context is attached to the lifecycle of an activity. It should be used when you are passing the context in the scope of an activity or you need the context whose lifecycle is attached to the current context. Application Context: This context is attached to the lifecycle of an application. The application context can be used where you need a context whose lifecycle is separate from the current context or when you are passing a context beyond the scope of activity.; https://hackr.io/blog/android-interview-questions

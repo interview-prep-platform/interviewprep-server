@@ -1,77 +1,227 @@
 [
   {
-    "question": "What is a static variable?",
-    "answer": "A variable that is shared by all classes",
-    "source": "dzone.com, DeepDive"
+    "Question": "What is a static variable?",
+    "Answer": "A variable that is shared by all classes",
+    "Source": "dzone.com, DeepDive"
   },
   {
-    "question": "If I change the order of a method’s modifiers, will it still work?  Is public static void main the same as public void static main?  What about void static public main?",
-    "answer": "Yes (void has to be right in front of main), otherwise it works, but the convention is to put the visibility modifier at the start",
-    "source": "dzone.com, Nick Bennett"
+    "Question": "If I change the order of a method’s modifiers, will it still work?  Is public static void main the same as public void static main?  What about void static public main?",
+    "Answer": "Yes (void has to be right in front of main), otherwise it works, but the convention is to put the visibility modifier at the start",
+    "Source": "dzone.com, Nick Bennett"
   },
   {
-    "question": "If we don’t specify public, private, or protected, what is the default visibility?",
-    "answer": "package private is the default",
-    "source": "Deep Dive"
+    "Question": "If we don’t specify public, private, or protected, what is the default visibility?",
+    "Answer": "package private is the default",
+    "Source": "Deep Dive"
   },
   {
-    "question": "When would you pick an ArrayList versus LinkedList?",
-    "answer": "ArrayList still has indexing like an array, but can increase its size as add things. LinkedList references chains of objects.  ArrayList is faster if you know the access, LinkedList better if you are reading from the end or adding to the end.  If you need to retrieve or get values from somewhere in the middle of the structure, then ArrayList is faster.  If you are going through a list in order, then use a LinkedList, but if you are adding to middle, then want to use ArrayList.",
-    "source": "DeepDive"
+    "Question": "When would you pick an ArrayList versus LinkedList?",
+    "Answer": "ArrayList still has indexing like an array, but can increase its size as add things. LinkedList references chains of objects.  ArrayList is faster if you know the access, LinkedList better if you are reading from the end or adding to the end.  If you need to retrieve or get values from somewhere in the middle of the structure, then ArrayList is faster.  If you are going through a list in order, then use a LinkedList, but if you are adding to middle, then want to use ArrayList.",
+    "Source": "DeepDive"
   },
   {
-    "question": "What are the different access modifiers and what do they mean?",
-    "answer": "Private: only see within class.  Public: anyone anywhere can see itProtected: package private plus subclasses of those class, then no one else can see it.  (includes the subclasses of the class).  Package private: only be accessed within the package.",
-    "source": "DeepDive"
+    "Question": "What are the different access modifiers and what do they mean?",
+    "Answer": "Private: only see within class.  Public: anyone anywhere can see itProtected: package private plus subclasses of those class, then no one else can see it.  (includes the subclasses of the class).  Package private: only be accessed within the package.",
+    "Source": "DeepDive"
   },
   {
-    "question": "What is the default access modifier for an interface?",
-    "answer": "Public",
-    "source": "DeepDive"
+    "Question": "What is the default access modifier for an interface?",
+    "Answer": "Public",
+    "Source": "DeepDive"
   },
   {
-    "question": "What is the default access modifier for an enum?",
-    "answer": "Package private, but constructor is private.",
-    "source": "DeepDive"
+    "Question": "What is the default access modifier for an enum?",
+    "Answer": "Package private, but constructor is private.",
+    "Source": "DeepDive"
   },
   {
-    "question": "If you want to prevent your classes or methods from being overridden, how would you do that?",
-    "answer": "Add final to it. (can’t inherit from it).  Final: stops inheritance to class or method.",
-    "source": "DeepDive"
+    "Question": "If you want to prevent your classes or methods from being overridden, how would you do that?",
+    "Answer": "Add final to it. (can’t inherit from it).  Final: stops inheritance to class or method.",
+    "Source": "DeepDive"
   },
   {
-    "question": "What is an immutable object?",
-    "answer": "An object can’t be modified.",
-    "source": "DeepDive"
+    "Question": "What is an immutable object?",
+    "Answer": "An object can’t be modified.",
+    "Source": "DeepDive"
   },
   {
-    "question": "What is the difference between overloading and overriding?",
-    "answer": "Overloading is where change the method signature. Overriding is when put different functionality into a method.",
-    "source": "DeepDive"
+    "Question": "What is the difference between overloading and overriding?",
+    "Answer": "Overloading is where change the method signature. Overriding is when put different functionality into a method.",
+    "Source": "DeepDive"
   },
   {
-    "question": "Can a constructor be overloaded?",
-    "answer": "Yes",
-    "source": "DeepDive"
+    "Question": "Can a constructor be overloaded?",
+    "Answer": "Yes",
+    "Source": "DeepDive"
   },
   {
-    "question": "Can a constructor be overridden?",
-    "answer": "No",
-    "source": "DeepDive"
+    "Question": "Can a constructor be overridden?",
+    "Answer": "No",
+    "Source": "DeepDive"
   },
   {
-    "question": "Can static methods be overridden?",
-    "answer": "No",
-    "source": "DeepDive"
+    "Question": "Can static methods be overridden?",
+    "Answer": "No",
+    "Source": "DeepDive"
   },
   {
-    "question": "Does java support multiple inheritance?",
-    "answer": "No.  A class can only extend one class.",
-    "source": "DeepDive"
+    "Question": "Does java support multiple inheritance?",
+    "Answer": "No.  A class can only extend one class.",
+    "Source": "DeepDive"
   },
   {
-    "question": "Can one class implement multiple interfaces?",
-    "answer": "Yes.",
-    "source": "DeepDive"
+    "Question": "Can one class implement multiple interfaces?",
+    "Answer": "Yes.",
+    "Source": "DeepDive"
+  },
+  {
+    "Question": "What is an abstract class?",
+    "Answer": "A class cannot be instantiated.",
+    "Source": "DeepDive"
+  },
+  {
+    "Question": "Can you extend an abstract class?",
+    "Answer": "Yes",
+    "Source": "DeepDive"
+  },
+  {
+    "Question": "Does java support goto?",
+    "Answer": "No",
+    "Source": "DeepDive"
+  },
+  {
+    "Question": "What three items are required in order to iterate over an array or collection using the enhanced-for syntax?",
+    "Answer": "",
+    "Source": ""
+  },
+  {
+    "Question": "1.\tThe contents of the array or collection must not be replaced in the body of the for loop.",
+    "Answer": "",
+    "Source": ""
+  },
+  {
+    "Question": "2.\tIteration must be in \"natural\" order—that is, from start to finish.",
+    "Answer": "",
+    "Source": ""
+  },
+  {
+    "Question": "3.\tThe iteration index variable will not be available, and thus must not be required by the code in the body of the for loop?",
+    "Answer": "DeepDive",
+    "Source": ""
+  },
+  {
+    "Question": "What is typically inflated to construct a menu of options presented to the user in the Android UI—e.g. in a navigation drawer, or in the action bar at the top of the screen?",
+    "Answer": "An XML document with a <menu> element root and zero or more <item> or <group> child elements.",
+    "Source": "DeepDive"
+  },
+  {
+    "Question": "Android resources (including layouts, menus, strings, etc.) may be customized using qualifiers for which of the following?",
+    "Answer": "",
+    "Source": ""
+  },
+  {
+    "Question": "1.\tWhether the Gmail app is installed or not",
+    "Answer": "",
+    "Source": ""
+  },
+  {
+    "Question": "2.\tUser country/region",
+    "Answer": "",
+    "Source": ""
+  },
+  {
+    "Question": "3.\tDevice manufacturer",
+    "Answer": "",
+    "Source": ""
+  },
+  {
+    "Question": "4.\tScreen orientation",
+    "Answer": "",
+    "Source": ""
+  },
+  {
+    "Question": "5.\tScreen size",
+    "Answer": "DeepDive",
+    "Source": ""
+  },
+  {
+    "Question": "Explain the build process in Android?",
+    "Answer": "The build process in Android involves three steps",
+    "Source": ""
+  },
+  {
+    "Question": "•\tThe first step consists of the compilation of the resources folder using the Android Asset Packaging Tool (AAPT). These are compiled into a single class file known as R.java, which only holds constants.",
+    "Answer": "",
+    "Source": ""
+  },
+  {
+    "Question": "•\tIn the second step, the java source code needs to be compiled to .class files using javac, which are then converted to Dalvik bytecode using the ‘dx’ tool, which is one of the tools in the software development kit. The final output file is classes.ex.",
+    "Answer": "",
+    "Source": ""
+  },
+  {
+    "Question": "•\tIn the third and final step, the Android apkbuilder is required to take all the inputs and build the Android Packaging Key (APK) file.",
+    "Answer": "",
+    "Source": ""
+  },
+  {
+    "Question": "",
+    "Answer": "https://hackr.io/blog/android-interview-questions",
+    "Source": ""
+  },
+  {
+    "Question": "List some languages that can be used to program in Android",
+    "Answer": "Java, Kotlin, C#, Python",
+    "Source": ""
+  },
+  {
+    "Question": "Describe the lifecycle of an activity",
+    "Answer": "",
+    "Source": ""
+  },
+  {
+    "Question": "•\tOnCreate(): Here, the views are created and data is collected from bundles.",
+    "Answer": "",
+    "Source": ""
+  },
+  {
+    "Question": "•\tOnStart(): It is called if the activity is visible to the user. It may be succeeded by onResume() if the activity reaches the foreground and onStop() if it converts into hidden.",
+    "Answer": "",
+    "Source": ""
+  },
+  {
+    "Question": "•\tOnResume(): It is called when the activity starts an interaction with the user.",
+    "Answer": "",
+    "Source": ""
+  },
+  {
+    "Question": "•\tOnPause(): This is called when the activity is going to the background but hasn’t been killed yet.",
+    "Answer": "",
+    "Source": ""
+  },
+  {
+    "Question": "•\tOnStop(): This is called when you are no longer visible to the user.",
+    "Answer": "",
+    "Source": ""
+  },
+  {
+    "Question": "•\tOnDestroy(): Called when the activity is finishing",
+    "Answer": "",
+    "Source": ""
+  },
+  {
+    "Question": "•\tOnRestart(): Called after the activity has been stopped, prior to it being started again",
+    "Answer": "",
+    "Source": "https://hackr.io/blog/android-interview-questions"
+  },
+  {
+    "Question": "What is Android Runtime?",
+    "Answer": "Android Runtime (ART) is an application used by the Android OS as a runtime environment. It has now replaced Dalvik, a discontinued process Virtual Machine (VM). ART translates the bytecode of the application into native instructions, which are carried out by the device’s runtime environment.",
+    "Source": "https://hackr.io/blog/android-interview-questions"
+  },
+  {
+    "Question": "What is Context?",
+    "Answer": "Activity Context: This context is attached to the lifecycle of an activity. It should be used when you are passing the context in the scope of an activity or you need the context whose lifecycle is attached to the current context. Application Context: This context is attached to the lifecycle of an application. The application context can be used where you need a context whose lifecycle is separate from the current context or when you are passing a context beyond the scope of activity.",
+    "Source": "https://hackr.io/blog/android-interview-questions"
   }
 ]

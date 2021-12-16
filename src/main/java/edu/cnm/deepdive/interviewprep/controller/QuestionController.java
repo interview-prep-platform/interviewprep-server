@@ -52,7 +52,7 @@ public class QuestionController {
    * @return A Question object in the form of JSON.
    */
   @GetMapping(value = "/{externalKey}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Question getAll(@PathVariable UUID externalKey) {
+  public Question get(@PathVariable UUID externalKey) {
     return questionService
         .get(externalKey)
         .orElseThrow();

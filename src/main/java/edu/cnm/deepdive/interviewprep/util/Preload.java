@@ -35,8 +35,8 @@ public class Preload implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    //preloadQuestions();
-    preloadCategories();
+    preloadQuestions();
+    //preloadCategories();
   }
 
   private void preloadQuestions() throws IOException {

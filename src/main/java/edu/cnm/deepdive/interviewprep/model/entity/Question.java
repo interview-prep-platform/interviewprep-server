@@ -78,6 +78,7 @@ public class Question {
       inverseJoinColumns = @JoinColumn(name = "category_id")
   )
   @OrderBy("name ASC")
+  @JsonProperty(access = Access.READ_ONLY)
   private Set<Category> categories = new LinkedHashSet<>();
 
   /**

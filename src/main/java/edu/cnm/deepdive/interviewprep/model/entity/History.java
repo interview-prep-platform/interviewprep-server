@@ -51,7 +51,7 @@ public class History {
   @JsonIgnore
   private Question question;
 
-  @Column(nullable = true, updatable = false, length = 2000)
+  @Column(nullable = true, length = 2000)
   private String answer;
 
   /**

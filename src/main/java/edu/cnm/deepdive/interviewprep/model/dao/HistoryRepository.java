@@ -21,4 +21,8 @@ public interface HistoryRepository extends JpaRepository<History, UUID> {
   Iterable<History> getAllByOrderByQuestionAsc();
 
   Iterable<History> findAllByUser(User user);
+
+  Iterable<History> findAllByUserAndQuestionOrderByCreatedDesc(User user, Question question);
+
+  Optional<History> findByExternalKeyAndUserAndQuestion(UUID externalKey, User user, Question question);
 }

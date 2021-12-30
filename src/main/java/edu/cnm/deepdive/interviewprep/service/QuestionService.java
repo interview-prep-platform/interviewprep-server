@@ -140,6 +140,14 @@ public class QuestionService {
     return questionRepository.getAllByOrderByQuestionAsc();
   }
 
+  public Iterable<Question> getAllQuestionsWithUserAnswers(User user) {
+    return questionRepository.findAllQuestionsWithUserAnswers(user);
+  }
+
+  public Iterable<Question> getAllQuestionsWithoutUserAnswers(User user) {
+    return questionRepository.findAllQuestionsWithoutUserAnswers(user);
+  }
+
   public Optional<Boolean> assignCategoryToQuestion(UUID questionKey, UUID categoryKey, boolean assign, User user) {
     return questionRepository
         .findByExternalKeyAndUser(questionKey, user)
@@ -161,4 +169,5 @@ public class QuestionService {
           return assign;
         });
   }
+
 }

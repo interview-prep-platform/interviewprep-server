@@ -23,6 +23,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -80,6 +81,11 @@ public class Question {
   @OrderBy("name ASC")
   @JsonProperty(access = Access.READ_ONLY)
   private Set<Category> categories = new LinkedHashSet<>();
+
+  @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "question")
+  @OrderBy("created DESC")
+  @JsonIgnore
+  private final List<History> answers = new LinkedList<>();
 
   /**
    * Returns the primary key identifier for this instance.
@@ -162,6 +168,10 @@ public class Question {
 
   public Set<Category> getCategories() {
     return categories;
+  }
+
+  public List<History> getAnswers() {
+    return answers;
   }
 }
 

@@ -1,6 +1,8 @@
 package edu.cnm.deepdive.interviewprep.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import java.util.Date;
 import java.util.UUID;
 import javax.persistence.Column;
@@ -30,9 +32,11 @@ public class History {
 
   @Id
   @GeneratedValue
+  @JsonIgnore
   @Column(name = "history_id", nullable = false, updatable = false, columnDefinition = "UUID")
   private UUID id;
 
+  @JsonProperty(value = "id", access = Access.READ_ONLY)
   @Column(nullable = false, updatable = false, columnDefinition = "UUID", unique = true)
   private UUID externalKey = UUID.randomUUID();
 

@@ -24,20 +24,25 @@ public class HistoryService {
 
   @Autowired
   public HistoryService(
-      HistoryRepository historyRepository,QuestionRepository questionRepository) {
+      HistoryRepository historyRepository, QuestionRepository questionRepository) {
     this.historyRepository = historyRepository;
     this.questionRepository = questionRepository;
   }
 
 
-  public Optional<History> get(UUID externalKey, User user) {
-    return historyRepository.findByExternalKeyAndUser(externalKey, user);
+  public Optional<History> get(UUID questionExternalKey, UUID answerExternalKey, User user) {
+    return questionRepository
+        .findByExternalKey(questionExternalKey)
+        .flatMap((q) ->
+            historyRepository.findByExternalKeyAndUserAndQuestion(answerExternalKey, user, q));
   }
 
 
-  public void delete(UUID externalKey, User user) {
-    historyRepository
-        .findByExternalKeyAndUser(externalKey, user)
+  public void delete(UUID questionExternalKey, UUID answerExternalKey, User user) {
+    questionRepository
+        .findByExternalKey(questionExternalKey)
+        .flatMap((q) -> historyRepository
+            .findByExternalKeyAndUserAndQuestion(answerExternalKey, user, q))
         .ifPresent(historyRepository::delete);
   }
 
@@ -61,17 +66,22 @@ public class HistoryService {
     return historyRepository.findByExternalKey(externalKey);
   }
 
+  public Optional<Iterable<History>> getUsersHistory(UUID questionId, User user) {
+    return questionRepository
+        .findByExternalKey(questionId)
+        .map((q) -> historyRepository.findAllByUserAndQuestionOrderByCreatedDesc(user, q));
+  }
+
 
   public Optional<History> createHistory(History history, UUID questionId, User user) {
-    if (user != null) {
-      history.setUser(user);
-    }
+    history.setUser(user);
     return questionRepository
-        .findByExternalKeyAndUser(questionId, user)
-        .map((q) -> { //if we don't have anything returned from the optional, then the map won't execute
-          history.setQuestion(q);
-          return historyRepository.save(history);
-        });
+        .findByExternalKey(questionId)
+        .map(
+            (q) -> { //if we don't have anything returned from the optional, then the map won't execute
+              history.setQuestion(q);
+              return historyRepository.save(history);
+            });
   }
 
 
@@ -85,10 +95,11 @@ public class HistoryService {
   public Optional<History> updateHistory(UUID externalKey, History history, User user) {
     return historyRepository
         .findByExternalKeyAndUser(externalKey, user)
-        .map((h) -> { //if we don't have anything returned from the optional, then the map won't execute
-          h.setAnswer(history.getAnswer());
-          return historyRepository.save(h);
-        });
+        .map(
+            (h) -> { //if we don't have anything returned from the optional, then the map won't execute
+              h.setAnswer(history.getAnswer());
+              return historyRepository.save(h);
+            });
   }
 
   public Iterable<History> getAllHistories() {

@@ -101,6 +101,11 @@ public class QuestionController {
     questionService.delete(externalKey, userService.getCurrentUser());
   }
 
+  @GetMapping(value = "/random", produces = MediaType.APPLICATION_JSON_VALUE, params = {"quizlength"})
+  public Iterable<Question> getRandom(@RequestParam int quizlength) {
+    return questionService.getRandomQuestion(quizlength);
+  }
+
   /**
    * This method defines the behavior of a GET request to the URL /interviewprep/questions/random.
    *
@@ -108,8 +113,10 @@ public class QuestionController {
    */
   @GetMapping(value = "/random", produces = MediaType.APPLICATION_JSON_VALUE)
   public Question getRandom() {
-    return questionService.getRandomQuestion();
+    return questionService.getRandomQuestion()
+        .orElseThrow();
   }
+
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, params = {"answered"})
   public Iterable<Question> getAllQuestionsWithUserAnswers(@RequestParam boolean answered) {

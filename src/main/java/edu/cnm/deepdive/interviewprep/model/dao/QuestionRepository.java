@@ -48,7 +48,7 @@ public interface QuestionRepository extends JpaRepository<Question, UUID> {
   Optional<Question> findRandom();
 
   @Query(value = "SELECT * FROM question ORDER BY RAND() limit :count", nativeQuery = true)
-  Optional<Question> findRandom(int count);
+  Iterable<Question> findRandom(int count);
 
   @Query(value = "SELECT DISTINCT q FROM Question AS q INNER JOIN q.answers AS a ON a.user = :user ORDER BY q.question ASC")
   Iterable<Question> findAllQuestionsWithUserAnswers(User user);

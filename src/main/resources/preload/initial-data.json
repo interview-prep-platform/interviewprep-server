@@ -50,11 +50,6 @@
     "source": "DeepDive"
   },
   {
-    "question": "Can a constructor be overloaded?",
-    "answer": "Yes",
-    "source": "DeepDive"
-  },
-  {
     "question": "Can a constructor be overridden?",
     "answer": "No",
     "source": "DeepDive"

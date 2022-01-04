@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -100,6 +101,11 @@ public class QuestionController {
     questionService.delete(externalKey, userService.getCurrentUser());
   }
 
+  @GetMapping(value = "/random", produces = MediaType.APPLICATION_JSON_VALUE, params = {"quizlength"})
+  public Iterable<Question> getRandom(@RequestParam int quizlength) {
+    return questionService.getRandomQuestion(quizlength);
+  }
+
   /**
    * This method defines the behavior of a GET request to the URL /interviewprep/questions/random.
    *
@@ -107,7 +113,16 @@ public class QuestionController {
    */
   @GetMapping(value = "/random", produces = MediaType.APPLICATION_JSON_VALUE)
   public Question getRandom() {
-    return questionService.getRandomQuestion();
+    return questionService.getRandomQuestion()
+        .orElseThrow();
+  }
+
+
+  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, params = {"answered"})
+  public Iterable<Question> getAllQuestionsWithUserAnswers(@RequestParam boolean answered) {
+    return answered
+        ? questionService.getAllQuestionsWithUserAnswers(userService.getCurrentUser())
+        : questionService.getAllQuestionsWithoutUserAnswers(userService.getCurrentUser());
   }
 
   /**

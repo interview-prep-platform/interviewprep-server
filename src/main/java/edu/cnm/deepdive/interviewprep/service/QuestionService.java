@@ -110,10 +110,14 @@ public class QuestionService {
    *
    * @return A random Question object.
    */
-  public Question getRandomQuestion() {
+  public Optional<Question> getRandomQuestion() {
     return questionRepository
-        .findRandom()
-        .orElseThrow();//throws an exception if not in the database
+        .findRandom();
+  }
+
+  public Iterable<Question> getRandomQuestion(int quizLength) {
+    return questionRepository
+        .findRandom(quizLength);
   }
 
   /**
@@ -140,6 +144,14 @@ public class QuestionService {
     return questionRepository.getAllByOrderByQuestionAsc();
   }
 
+  public Iterable<Question> getAllQuestionsWithUserAnswers(User user) {
+    return questionRepository.findAllQuestionsWithUserAnswers(user);
+  }
+
+  public Iterable<Question> getAllQuestionsWithoutUserAnswers(User user) {
+    return questionRepository.findAllQuestionsWithoutUserAnswers(user);
+  }
+
   public Optional<Boolean> assignCategoryToQuestion(UUID questionKey, UUID categoryKey, boolean assign, User user) {
     return questionRepository
         .findByExternalKeyAndUser(questionKey, user)
@@ -161,4 +173,5 @@ public class QuestionService {
           return assign;
         });
   }
+
 }

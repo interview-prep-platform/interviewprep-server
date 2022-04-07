@@ -4,14 +4,18 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.cnm.deepdive.interviewprep.model.dao.CategoryRepository;
 import edu.cnm.deepdive.interviewprep.model.dao.QuestionRepository;
+import edu.cnm.deepdive.interviewprep.model.dao.UserRepository;
 import edu.cnm.deepdive.interviewprep.model.entity.Category;
 import edu.cnm.deepdive.interviewprep.model.entity.Question;
+import edu.cnm.deepdive.interviewprep.model.entity.User;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ClassPathResource;
@@ -23,28 +27,47 @@ public class Preload implements CommandLineRunner {
 
   private static final String INITIAL_QUESTIONS_DATA_RESOURCE = "preload/initial-data.json";
   private static final String INITIAL_CATEGORIES_DATA_RESOURCE = "preload/categories.json";
+
+  private final UserRepository userRepository;
   private final QuestionRepository questionRepository;
   private final CategoryRepository categoryRepository;
 
+/*
+  @Value("${user-id}")
+  private UUID userId;
+*/
+
   @Autowired
-  public Preload(QuestionRepository questionRepository,
+  public Preload(UserRepository userRepository,
+      QuestionRepository questionRepository,
       CategoryRepository categoryRepository) {
+    this.userRepository = userRepository;
     this.questionRepository = questionRepository;
     this.categoryRepository = categoryRepository;
   }
 
   @Override
   public void run(String... args) throws Exception {
-    //preloadQuestions();
+    preloadQuestions();
     preloadCategories();
+
   }
 
   private void preloadQuestions() throws IOException {
     ClassPathResource resource = new ClassPathResource(INITIAL_QUESTIONS_DATA_RESOURCE);
     try (InputStream input = resource.getInputStream()) {
       ObjectMapper mapper = new ObjectMapper();
-      List<Question> listQuestions = mapper.readValue(input, new TypeReference<List<Question>>() {
-      });
+      Question[] questions = mapper.readValue(input, Question[].class);
+      List<Question> listQuestions = Stream
+          .of(questions)
+          .map((question) -> {
+            Question q = new Question();
+            q.setQuestion(question.getQuestion());
+            q.setAnswer(question.getAnswer());
+            q.setSource(question.getSource());
+            return q;
+          })
+          .collect(Collectors.toList());
       questionRepository.saveAllAndFlush(listQuestions);
     }
   }

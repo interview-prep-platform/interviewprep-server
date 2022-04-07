@@ -3,3 +3,4 @@ spring:
     name: preload
   main:
     web-application-type: none
+

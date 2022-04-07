@@ -42,6 +42,17 @@ public class CategoryController {
   }
 
   /**
+   * This method defines the behavior of a GET request to the URL /interviewprep/categories.
+   *
+   * @return a list of all categories from database via the category service.
+   */
+  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+  public Iterable<Category> get() {
+    return categoryService
+        .getCategories();
+  }
+
+  /**
    * This method defines the behavior of a GET request to the URL /interviewprep/categories/externalKey.
    * It grabs the current category from the Category service.
    *
@@ -96,14 +107,5 @@ public class CategoryController {
     categoryService.delete(externalKey);
   }
 
-  /**
-   * This method defines the behavior of a GET request to the URL /interviewprep/categories.
-   *
-   * @return a list of all categories from database via the category service.
-   */
-  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public Iterable<Category> get() {
-    return categoryService
-        .getCategories();
-  }
+
 }
